@@ -1,4 +1,4 @@
-# Dashboard of Hong Kong Public Data Tracker
+# Dashboard of Hong Kong Passenger Traffic Tracker
 
 Our dashboard visualizes passenger movement statistics, categorized by entry points, traveler types (HK residents, Mainland visitors, others), and trends over time.
 
@@ -46,6 +46,8 @@ Interested in contributing? Check out the [contributing guidelines](https://gith
 ## 📚 License
 
 The Hong Kong Public Data Tracker is licensed under the terms of the [MIT license](https://github.com/UBC-MDS/DSCI-532_2025_10_hong-kong-tracker/blob/main/LICENSE.md).
+
+The Daily Passenger Traffic dataset, as part of the DATA.GOV.HK datasets, is free to use for both commercial and non-commercial purposes, subject to the [Terms of Use](https://data.gov.hk/en/terms-and-conditions).
 
 ## Support
 
