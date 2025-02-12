@@ -38,7 +38,7 @@ The dataset contains the following columns:
 - **Total**: The total number of passengers.
 
 #### Cleaned & Formatted Data  
-We clean and format the data into the following columns:  
+We cleaned and formatted the data into the following columns:  
 
 - **`date`**: Extracted from the original **Date** column.  
 - **`control_point`**: Extracted from the original **Control Point** column.  
@@ -47,12 +47,12 @@ We clean and format the data into the following columns:
 - **`passenger_count`**: The number of passengers in each category.  
 
 After data wrangling, there are 136,000 rows (by Jan 2025) and 5 variables. We will utilize all the variables in our visualization.
-#### New Variables
 
+#### New Variables
 Additionally, we will engine the following variables.
 
 - **`net_passenger_inflow`**: The number of passengers entering the city minus the number of passengers exiting the city. A positive value means more people are entering than leaving, while a negative value means the opposite. It can help track trends during holidays and major events.
-- **`vistor_population_ratio`**: The number of passengers divided by the city’s population. This variable can indicate the tourism intensity and the relative impact of visitors on the city’s infrastructure.
+- **`vistor_population_ratio`**: The number of passengers divided by the city’s population. This variable can indicate the tourism intensity and the relative impact of visitors on the city’s infrastructure. In this project, we will use 7.54 million as the population in Hong Kong [(source)](https://www.gov.hk/en/about/abouthk/facts.htm).
 - **`travel_method`**: Derived from the `control_point` variable, indicating whether the passenger travels by sea, air, or land. It helps us analyze travel trends by transport mode, especially for seasonal or event-driven changes.
 
 #### How Does the Data Solve the Problem?
