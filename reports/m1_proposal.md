@@ -23,6 +23,43 @@ With intuitive data visualization, decision-makers can allocate resources more e
 This initiative bridges the gap between raw data and strategic policymaking, fostering smarter governance and improved public services.
 
 ## Section 2
+### Data Source
+The [Daily Passenger Traffic](https://data.gov.hk/en-data/dataset/hk-immd-set5-statistics-daily-passenger-traffic) dataset is a public dataset provided by the Immigration Department of the Hong Kong SAR Government. It tracks the daily flow of passengers entering and exiting the city at each border control point since 2021. The dataset is updated daily and can be accessed via API requests. By Jan 2025, there are around 45,000 rows. 
+
+#### Dataset Columns  
+The dataset contains the following columns:  
+
+- **Date**: The date of the record.  
+- **Control Point**: The name of the border control point, such as the airport, ferry terminals, and railway stations.  
+- **Arrival / Departure**: Indicates whether the passenger is entering or leaving Hong Kong.  
+- **Hong Kong Residents**: The number of passengers who are Hong Kong residents.  
+- **Mainland Visitors**: The number of passengers who are residents of Mainland China.  
+- **Other Visitors**: The number of foreign passengers.  
+- **Total**: The total number of passengers.
+
+#### Cleaned & Formatted Data  
+We cleaned and formatted the data into the following columns:  
+
+- **`date`**: Extracted from the original **Date** column.  
+- **`control_point`**: Extracted from the original **Control Point** column.  
+- **`travel_type`**: Extracted from the original **Arrival / Departure** column.  
+- **`passenger_origin`**: Categorized as `Hong Kong Residents`, `Mainland Visitors`, or `Other Visitors`.  
+- **`passenger_count`**: The number of passengers in each category.  
+
+After data wrangling, there are 136,000 rows (by Jan 2025) and 5 variables. We will utilize all the variables in our visualization.
+
+#### New Variables
+Additionally, we will engine the following variables.
+
+- **`net_passenger_inflow`**: The number of passengers entering the city minus the number of passengers exiting the city. A positive value means more people are entering than leaving, while a negative value means the opposite. It can help track trends during holidays and major events.
+- **`vistor_population_ratio`**: The number of passengers divided by the city’s population. This variable can indicate the tourism intensity and the relative impact of visitors on the city’s infrastructure. In this project, we will use 7.54 million as the population in Hong Kong [(source)](https://www.gov.hk/en/about/abouthk/facts.htm).
+- **`travel_method`**: Derived from the `control_point` variable, indicating whether the passenger travels by sea, air, or land. It helps us analyze travel trends by transport mode, especially for seasonal or event-driven changes.
+
+#### How Does the Data Solve the Problem?
+The number of passengers crossing the border in both directions is a key metric for monitoring cross-border movements. Additionally, we incorporate secondary information in our dataset, including **which border passengers use**, **their mode of travel**, and **their origin**. This enables the government to allocate resources effectively, especially during major events, ensuring a smooth border-crossing experience for all travelers. For example, for land borders, if the government notices an increasing trend of passengers leaving the city through a land control point, they can extend its operating hours and notify the authorities on the other side.
+
+Furthermore, the newly introduced variable, `visitor_population_ratio`, reflects the proportion of visitors relative to the total population. This metric helps the government assess the impact of visitors on the city’s infrastructure. For example, it can help the government make decisions on whether to increase the frequency of metro and bus services connecting downtown and the airport to accommodate higher passenger volumes.
+
 
 ## Section 3
 
