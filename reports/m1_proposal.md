@@ -60,7 +60,37 @@ The number of passengers crossing the border in both directions is a key metric 
 
 Furthermore, the newly introduced variable, `visitor_population_ratio`, reflects the proportion of visitors relative to the total population. This metric helps the government assess the impact of visitors on the city’s infrastructure. For example, it can help the government make decisions on whether to increase the frequency of metro and bus services connecting downtown and the airport to accommodate higher passenger volumes.
 
-
 ## Section 3
+
+### Persona
+
+It is expected that a user from the intended target audience might not be well-versed in the
+technical aspects of the data. However, these users will need to know which control points are
+the most popular so that decisions regarding the budget can be made. Therefore, they will focus
+on ensuring the government does not underfund key control points.
+
+For the users who are more aware of the technical aspects, they are likely to be looking for key
+metrics such as throughput through a particular control point and looking for bottlenecks in the
+transportation of people. Having real-time access to this information allows them to better
+coordinate key personnel to ensure smooth operations even with congestion in some control points.
+
+### Example Scenario
+
+Ming Choi is a public policy maker with some technical knowledge who is working in the Hong Kong
+government and he wants to know which control points of Hong Kong are the most used to better
+assign funds to support these high-traffic control points. Additionally, Choi might also wish to
+*explore* which time of the year is the busiest historically so that there are additional funds
+set aside for the future.
+
+Choi might also want to *compare* multiple control points simultaneously for data over time to
+gain better insight into optimal times to increase or decrease funds. Therefore, then Choi logs
+into this Hong Kong Tracker app, he will be able to see an overview of the people traffic for the
+city using the dataset that has been collected by the government already. He can filter the data
+to see an overview of people traveling through certain control points and compare between each
+control point. He might find that the airport is the most popular control point in the city.
+
+Based on his findings using the app, Choi would then know that it is more prudent to allocate
+more funds to the airport to ensure that there is enough staff to handle the number of people 
+arriving and departing through the airport.
 
 ## Section 4
