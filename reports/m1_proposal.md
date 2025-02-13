@@ -79,10 +79,10 @@ coordinate key personnel to ensure smooth operations even with congestion in som
 Ming Choi is a public policy maker with some technical knowledge who is working in the Hong Kong
 government and he wants to know which control points of Hong Kong are the most used to better
 assign funds to support these high-traffic control points. Additionally, Choi might also wish to
-[explore] which time of the year is the busiest historically so that there are additional funds
+*explore* which time of the year is the busiest historically so that there are additional funds
 set aside for the future.
 
-Choi might also want to [compare] multiple control points simultaneously for data over time to
+Choi might also want to *compare* multiple control points simultaneously for data over time to
 gain better insight into optimal times to increase or decrease funds. Therefore, then Choi logs
 into this Hong Kong Tracker app, he will be able to see an overview of the people traffic for the
 city using the dataset that has been collected by the government already. He can filter the data
