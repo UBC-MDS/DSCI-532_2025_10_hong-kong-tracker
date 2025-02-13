@@ -66,9 +66,8 @@ Furthermore, the newly introduced variable, `visitor_population_ratio`, reflects
 
 It is expected that a user from the intended target audience might not be well-versed in the
 technical aspects of the data. However, these users will need to know which control points are
-the most popular so that decisions regarding the budget can be made. They are likely to be of the
-mindset to focus on ensuring the government is not underfunding key control points into and out
-of the city.
+the most popular so that decisions regarding the budget can be made. Therefore, they will focus
+on ensuring the government does not underfund key control points.
 
 For the users who are more aware of the technical aspects, they are likely to be looking for key
 metrics such as throughput through a particular control point and looking for bottlenecks in the
