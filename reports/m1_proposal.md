@@ -60,7 +60,19 @@ The number of passengers crossing the border in both directions is a key metric 
 
 Furthermore, the newly introduced variable, `visitor_population_ratio`, reflects the proportion of visitors relative to the total population. This metric helps the government assess the impact of visitors on the city’s infrastructure. For example, it can help the government make decisions on whether to increase the frequency of metro and bus services connecting downtown and the airport to accommodate higher passenger volumes.
 
-
 ## Section 3
+
+### Persona
+
+It is expected that a user from the intended target audience might not be well-versed in the
+technical aspects of the data. However, these users will need to know which control points are
+the most popular so that decisions regarding the budget can be made. They are likely to be of the
+mindset to focus on ensuring the government is not underfunding key control points into and out
+of the city.
+
+For the users who are more aware of the technical aspects, they are likely to be looking for key
+metrics such as throughput through a particular control point and looking for bottlenecks in the
+transportation of people. Having real-time access to this information allows them to better
+coordinate key personnel to ensure smooth operations even with congestion in some control points.
 
 ## Section 4
