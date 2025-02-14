@@ -1,4 +1,5 @@
 ## Section 1
+
 ### Motivation and Purpose
 
 Hong Kong is a major global hub with complex cross-border movement patterns, making efficient passenger traffic management crucial for both policymakers and public service agencies. 
@@ -23,10 +24,13 @@ With intuitive data visualization, decision-makers can allocate resources more e
 This initiative bridges the gap between raw data and strategic policymaking, fostering smarter governance and improved public services.
 
 ## Section 2
+
 ### Data Source
+
 The [Daily Passenger Traffic](https://data.gov.hk/en-data/dataset/hk-immd-set5-statistics-daily-passenger-traffic) dataset is a public dataset provided by the Immigration Department of the Hong Kong SAR Government. It tracks the daily flow of passengers entering and exiting the city at each border control point since 2021. The dataset is updated daily and can be accessed via API requests. By Jan 2025, there are around 45,000 rows. 
 
 #### Dataset Columns  
+
 The dataset contains the following columns:  
 
 - **Date**: The date of the record.  
@@ -38,6 +42,7 @@ The dataset contains the following columns:
 - **Total**: The total number of passengers.
 
 #### Cleaned & Formatted Data  
+
 We cleaned and formatted the data into the following columns:  
 
 - **`date`**: Extracted from the original **Date** column.  
@@ -49,6 +54,7 @@ We cleaned and formatted the data into the following columns:
 After data wrangling, there are 136,000 rows (by Jan 2025) and 5 variables. We will utilize all the variables in our visualization.
 
 #### New Variables
+
 Additionally, we will engine the following variables.
 
 - **`net_passenger_inflow`**: The number of passengers entering the city minus the number of passengers exiting the city. A positive value means more people are entering than leaving, while a negative value means the opposite. It can help track trends during holidays and major events.
@@ -56,6 +62,7 @@ Additionally, we will engine the following variables.
 - **`travel_method`**: Derived from the `control_point` variable, indicating whether the passenger travels by sea, air, or land. It helps us analyze travel trends by transport mode, especially for seasonal or event-driven changes.
 
 #### How Does the Data Solve the Problem?
+
 The number of passengers crossing the border in both directions is a key metric for monitoring cross-border movements. Additionally, we incorporate secondary information in our dataset, including **which border passengers use**, **their mode of travel**, and **their origin**. This enables the government to allocate resources effectively, especially during major events, ensuring a smooth border-crossing experience for all travelers. For example, for land borders, if the government notices an increasing trend of passengers leaving the city through a land control point, they can extend its operating hours and notify the authorities on the other side.
 
 Furthermore, the newly introduced variable, `visitor_population_ratio`, reflects the proportion of visitors relative to the total population. This metric helps the government assess the impact of visitors on the city’s infrastructure. For example, it can help the government make decisions on whether to increase the frequency of metro and bus services connecting downtown and the airport to accommodate higher passenger volumes.
@@ -94,3 +101,15 @@ more funds to the airport to ensure that there is enough staff to handle the num
 arriving and departing through the airport.
 
 ## Section 4
+
+### Hong Kong Passenger Traffic Tracker
+
+The app contains a landing page that visualizes passenger traffic across different control points in Hong Kong. Users can explore various statistics, including the **visitor population ratio** and **total number of visitors**, displayed as key summary metrics. The interface includes **interactive bar charts** that show **net passenger inflow** over time and **passenger count by origin**, with different travel types (Sea, Air, Land) and resident categories (Mainland, Other).
+
+A **scroll bar** allows users to navigate through different data visualizations. Users can filter the displayed information using a collapsible **filter panel**, where they can select a **time period**, specific **control points**, and filter by **arrival or departure** using radio buttons.
+
+Further down, the app provides an interactive **map view** showing the **volume of control point traffic** at various locations. Users can hover over or click on points to reveal more details about passenger flow at different locations.
+
+A separate dropdown menu enables users to re-order control points based on traffic volume or arrange them alphabetically. The interface allows for **comparative exploration**, enabling users to **scroll** through different visualizations to analyze trends in passenger movement across control points.
+
+![Sketch of the App](sketch.png)
