@@ -13,7 +13,7 @@ This dashboard is designed for public policymakers, transportation authorities, 
 
 Hong Kong’s control points facilitate a large volume of cross-border movements, but without clear visualization tools, identifying trends and making informed decisions can be challenging. 
 Fragmented or outdated data makes it difficult to allocate resources effectively, anticipate surges in passenger flow, or detect anomalies in travel patterns. 
-Additionally, after the global travel recovery post-pandemic, policymakers require a data-driven approach to evaluate the impact of regulatory measures on cross-border mobility.
+Additionally, as international travel started recovering after the pandemic, policymakers require a data-driven approach to evaluate the impact of regulatory measures on cross-border mobility.
 
 ### Dashboard Purpose:
 
