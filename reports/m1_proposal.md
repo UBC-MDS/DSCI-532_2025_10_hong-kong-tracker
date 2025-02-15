@@ -112,4 +112,4 @@ Further down, the app provides an interactive **map view** showing the **volume 
 
 A separate dropdown menu enables users to re-order control points based on traffic volume or arrange them alphabetically. The interface allows for **comparative exploration**, enabling users to **scroll** through different visualizations to analyze trends in passenger movement across control points.
 
-![Sketch of the App](sketch.png)
+![Sketch of the App](../img/sketch.png)
