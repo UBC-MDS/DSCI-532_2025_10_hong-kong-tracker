@@ -1,6 +1,6 @@
-## Section 1
+# Hong Kong Immigration Passenger Traffic Dashboard
 
-### Motivation and Purpose
+## Motivation and Purpose
 
 Hong Kong is a major global hub with complex cross-border movement patterns, making efficient passenger traffic management crucial for both policymakers and public service agencies. 
 Our team, acting as data science consultants, aims to provide actionable insights through a well-structured, interactive dashboard.
@@ -23,7 +23,7 @@ By offering dynamic filtering, historical comparisons, and real-time insights, o
 With intuitive data visualization, decision-makers can allocate resources more effectively, ensuring a seamless and efficient movement of people through Hong Kong’s borders.
 This initiative bridges the gap between raw data and strategic policymaking, fostering smarter governance and improved public services.
 
-## Section 2
+## Description of the data
 
 ### Data Source
 
@@ -67,7 +67,7 @@ The number of passengers crossing the border in both directions is a key metric 
 
 Furthermore, the newly introduced variable, `visitor_population_ratio`, reflects the proportion of visitors relative to the total population. This metric helps the government assess the impact of visitors on the city’s infrastructure. For example, it can help the government make decisions on whether to increase the frequency of metro and bus services connecting downtown and the airport to accommodate higher passenger volumes.
 
-## Section 3
+## Research questions and usage scenarios
 
 ### Persona
 
@@ -100,9 +100,7 @@ Based on his findings using the app, Mr.Choi would then know that it is more pru
 more funds to the airport to ensure that there is enough staff to handle the number of people 
 arriving and departing through the airport.
 
-## Section 4
-
-### Hong Kong Passenger Traffic Tracker Dashboard
+## App sketch & brief description
 
 The app contains a landing page that visualizes passenger traffic across different control points in Hong Kong. Users can explore various statistics, including the **visitor population ratio** and **total number of visitors**, displayed as key summary metrics. The interface includes **interactive bar charts** that show **net passenger inflow** over time and **passenger count by origin**, with different travel types (Sea, Air, Land) and resident categories (Mainland, Other).
 
