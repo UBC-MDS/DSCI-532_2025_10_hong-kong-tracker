@@ -13,7 +13,7 @@ This dashboard is designed for public policymakers, transportation authorities, 
 
 Hong Kong’s control points facilitate a large volume of cross-border movements, but without clear visualization tools, identifying trends and making informed decisions can be challenging. 
 Fragmented or outdated data makes it difficult to allocate resources effectively, anticipate surges in passenger flow, or detect anomalies in travel patterns. 
-Additionally, with ongoing travel restrictions, policymakers require a data-driven approach to evaluate the impact of regulatory measures on cross-border mobility.
+Additionally, after the global travel recovery post-pandemic, policymakers require a data-driven approach to evaluate the impact of regulatory measures on cross-border mobility.
 
 ### Dashboard Purpose:
 
@@ -55,7 +55,7 @@ After data wrangling, there are 136,000 rows (by Jan 2025) and 5 variables. We w
 
 #### New Variables
 
-Additionally, we will engine the following variables.
+Additionally, we will engineer the following variables.
 
 - **`net_passenger_inflow`**: The number of passengers entering the city minus the number of passengers exiting the city. A positive value means more people are entering than leaving, while a negative value means the opposite. It can help track trends during holidays and major events.
 - **`vistor_population_ratio`**: The number of passengers divided by the city’s population. This variable can indicate the tourism intensity and the relative impact of visitors on the city’s infrastructure. In this project, we will use 7.54 million as the population in Hong Kong [(source)](https://www.gov.hk/en/about/abouthk/facts.htm).
@@ -85,24 +85,24 @@ coordinate key personnel to ensure smooth operations even with congestion in som
 
 Ming Choi is a public policy maker with some technical knowledge who is working in the Hong Kong
 government and he wants to know which control points of Hong Kong are the most used to better
-assign funds to support these high-traffic control points. Additionally, Choi might also wish to
+assign funds to support these high-traffic control points. Additionally, Mr.Choi might also wish to
 *explore* which time of the year is the busiest historically so that there are additional funds
 set aside for the future.
 
-Choi might also want to *compare* multiple control points simultaneously for data over time to
-gain better insight into optimal times to increase or decrease funds. Therefore, then Choi logs
+Mr.Choi might also want to *compare* multiple control points simultaneously for data over time to
+gain better insight into optimal times to increase or decrease funds. Therefore, when Mr.Choi logs
 into this Hong Kong Tracker app, he will be able to see an overview of the people traffic for the
 city using the dataset that has been collected by the government already. He can filter the data
 to see an overview of people traveling through certain control points and compare between each
 control point. He might find that the airport is the most popular control point in the city.
 
-Based on his findings using the app, Choi would then know that it is more prudent to allocate
+Based on his findings using the app, Mr.Choi would then know that it is more prudent to allocate
 more funds to the airport to ensure that there is enough staff to handle the number of people 
 arriving and departing through the airport.
 
 ## Section 4
 
-### Hong Kong Passenger Traffic Tracker
+### Hong Kong Passenger Traffic Tracker Dashboard
 
 The app contains a landing page that visualizes passenger traffic across different control points in Hong Kong. Users can explore various statistics, including the **visitor population ratio** and **total number of visitors**, displayed as key summary metrics. The interface includes **interactive bar charts** that show **net passenger inflow** over time and **passenger count by origin**, with different travel types (Sea, Air, Land) and resident categories (Mainland, Other).
 
