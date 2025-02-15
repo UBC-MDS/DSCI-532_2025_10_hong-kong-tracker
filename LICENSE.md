@@ -147,3 +147,10 @@ express Statement of Purpose.
  d. Affirmer understands and acknowledges that Creative Commons is not a
     party to this document and has no duty or obligation with respect to
     this CC0 or use of the Work.
+
+
+# Dataset Terms of Use
+
+The Daily Passenger Traffic dataset, as part of the DATA.GOV.HK datasets, 
+is free to use for both commercial and non-commercial purposes,
+subject to the [Terms of Use](https://data.gov.hk/en/terms-and-conditions).

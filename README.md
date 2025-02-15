@@ -45,7 +45,7 @@ Interested in contributing? Check out the [contributing guidelines](https://gith
 
 ## 📚 License
 
-The Hong Kong Public Data Tracker is licensed under the terms of the [MIT license](https://github.com/UBC-MDS/DSCI-532_2025_10_hong-kong-tracker/blob/main/LICENSE.md).
+This project is licensed under the terms of the [MIT license](https://github.com/UBC-MDS/DSCI-532_2025_10_hong-kong-tracker/blob/main/LICENSE.md).
 
 The Daily Passenger Traffic dataset, as part of the DATA.GOV.HK datasets, is free to use for both commercial and non-commercial purposes, subject to the [Terms of Use](https://data.gov.hk/en/terms-and-conditions).
 
@@ -55,4 +55,4 @@ If you encounter any issues, require assistance, need to report a bug, or reques
 
 ## Reference
 
-Data resource: [Hong Kong Public Data](https://data.gov.hk/en-data/dataset/hk-immd-set5-statistics-daily-passenger-traffic)
+Data resource: [Hong Kong Daily Passenger Traffic Dataset](https://data.gov.hk/en-data/dataset/hk-immd-set5-statistics-daily-passenger-traffic)
