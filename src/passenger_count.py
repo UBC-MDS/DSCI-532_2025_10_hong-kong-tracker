@@ -40,3 +40,13 @@ def passenger_count(start_date, end_date, control_point: list[str] = 'all') -> d
     ).drop(
         columns='passenger_origin'
     ).groupby(['date', 'control_point']).agg('sum').reset_index()
+
+    diff_df['difference'] = diff_df['Arrival'] - diff_df['Departure']
+
+    # Filter for specific control points or merge all control points
+    if control_point == 'all':
+        diff_df = diff_df.groupby('date').agg('sum').reset_index()
+    else:
+        diff_df = diff_df[
+            diff_df['control_point'].isin(control_point)
+            ].groupby('date').agg('sum').reset_index()
