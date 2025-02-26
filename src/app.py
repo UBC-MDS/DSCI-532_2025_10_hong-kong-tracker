@@ -1,5 +1,6 @@
 from dash import Dash, html, dcc  # type: ignore
 import dash_bootstrap_components as dbc  # type: ignore
+import dash_vega_components as dvc
 import pandas as pd
 from src.callbacks import register_callbacks  # Import the callback registration function
 from datetime import timedelta
@@ -70,7 +71,7 @@ graphs_section = dbc.Container(
         dbc.Row(
             [
                 dbc.Col(dcc.Graph(id="net_passenger_inflow"), width=6),
-                dbc.Col(dcc.Graph(id="passenger_count"), width=6),
+                dbc.Col(dvc.Vega(id="passenger_count", spec={}), width=6),
             ]
         ),
         dbc.Row(
