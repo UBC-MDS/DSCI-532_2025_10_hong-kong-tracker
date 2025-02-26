@@ -2,12 +2,12 @@ import pandas as pd
 
 def clean_data():
     df = pd.read_csv('data/raw/data.csv')
-    df = df.iloc[:, 1:6]
+    df = df.iloc[:, 1:7]
     df = df.melt(
         id_vars=df.columns[:3],
         var_name="passenger_origin",
-        value_name="passenger_count",
-    )
+        value_name="passenger_count"
+        )
     # Rename columns
     df = df.rename(
         columns={
