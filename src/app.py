@@ -1,7 +1,7 @@
 from dash import Dash, html, dcc  # type: ignore
 import dash_bootstrap_components as dbc  # type: ignore
 import pandas as pd
-from src.callbacks import register_callbacks  # Import the callback registration function
+from callbacks import register_callbacks  # Import the callback registration function
 from datetime import timedelta
 
 # Load data to get control point values
