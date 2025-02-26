@@ -5,7 +5,7 @@ from src.callbacks import register_callbacks  # Import the callback registration
 from datetime import timedelta
 
 # Load data to get control point values
-DATA_PATH = "data/raw/data.csv"
+DATA_PATH = "data/processed/data.csv"
 df = pd.read_csv(DATA_PATH)
 
 # Ensure the date column is in datetime format

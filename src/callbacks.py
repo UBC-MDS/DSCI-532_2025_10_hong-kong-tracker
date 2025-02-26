@@ -5,7 +5,7 @@ import dash_leaflet as dl  # type: ignore
 import dash_leaflet.express as dlx  # type: ignore
 
 # Load data
-DATA_PATH = "data/raw/data.csv"
+DATA_PATH = "data/processed/data.csv"
 df = pd.read_csv(DATA_PATH)
 
 # Ensure the date column is in datetime format
