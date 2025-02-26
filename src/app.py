@@ -19,7 +19,7 @@ last_date = df["date"].max().date() if not df["date"].isna().all() else None
 
 # Initialize the Dash app with Bootstrap for styling
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-server = app.server
+server = app.server # for deployment
 
 # Sidebar for filters
 sidebar = html.Div(
@@ -86,8 +86,8 @@ content = html.Div(
 app.layout = html.Div([sidebar, content])
 
 # Register callbacks
-register_callbacks(app)  # Ensure this is called!
+register_callbacks(app)
 
 # Run the app
 if __name__ == "__main__":
-    app.run_server(debug=True, port=8080)
+    app.run_server(debug=False, port=8080)
