@@ -5,7 +5,7 @@
 import pandas as pd
 import altair as alt
 
-def passenger_count(start_date, end_date, control_point: str = 'all') -> dict:
+def passenger_count(start_date, end_date, control_point: list[str] = 'all') -> dict:
     """
     Function used with callback to return passenger count chart
 
@@ -15,13 +15,17 @@ def passenger_count(start_date, end_date, control_point: str = 'all') -> dict:
         Start date of the data to look at
     end_date : Date
         End date of the data to look at
-    control_point : str, optional
+    control_point : list[str], optional
         Control point to filter for. Defaults to 'all' for all control points
 
     Returns
     -------
         dict
     Altair chart dictionary schema to render
+
+    Example
+    -------
+    >>> passenger_count('01-01-2025', '01-20-2025', ['Airport', 'China Ferry Terminal'])
     """
     # Load data and parse dates
     df = pd.read_csv('../data/raw/data.csv').drop(columns='Unnamed: 0')
