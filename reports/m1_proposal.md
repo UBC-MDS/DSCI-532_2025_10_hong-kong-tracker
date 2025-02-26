@@ -58,7 +58,7 @@ After data wrangling, there are 136,000 rows (by Jan 2025) and 5 variables. We w
 Additionally, we will engineer the following variables.
 
 - **`net_passenger_inflow`**: The number of passengers entering the city minus the number of passengers exiting the city. A positive value means more people are entering than leaving, while a negative value means the opposite. It can help track trends during holidays and major events.
-- **`vistor_population_ratio`**: The number of passengers divided by the city’s population. This variable can indicate the tourism intensity and the relative impact of visitors on the city’s infrastructure. In this project, we will use 7.54 million as the population in Hong Kong [(source)](https://www.gov.hk/en/about/abouthk/facts.htm).
+- **`vistor_population_ratio`**: The number of passengers divided by the city’s population. This variable can indicate the tourism intensity and the relative impact of visitors on the city’s infrastructure. In this project, we will use 7.54 million as the population in Hong Kong [(source)](https://www.gov.hk/en/about/abouthk/facts.html).
 - **`travel_method`**: Derived from the `control_point` variable, indicating whether the passenger travels by sea, air, or land. It helps us analyze travel trends by transport mode, especially for seasonal or event-driven changes.
 
 #### How Does the Data Solve the Problem?
