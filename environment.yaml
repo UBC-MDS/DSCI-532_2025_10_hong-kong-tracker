@@ -19,6 +19,8 @@ dependencies:
     - dash=2.16.0
     - dash-bootstrap-components=1.5.0
     - plotly=5.0.0
+    - vegafusion=1.6.9
+    - vegafusion-python-embed=1.6.9
     - pip
     - pip:
         - dash-vega-components
