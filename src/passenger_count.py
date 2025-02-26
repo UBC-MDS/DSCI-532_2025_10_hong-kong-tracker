@@ -23,4 +23,6 @@ def passenger_count(start_date, end_date, control_point: str = 'all') -> dict:
         dict
     Altair chart dictionary schema to render
     """
-    pass
+    # Load data and parse dates
+    df = pd.read_csv('../data/raw/data.csv').drop(columns='Unnamed: 0')
+    df['date'] = pd.to_datetime(df['date'], format='%d-%m-%Y')
