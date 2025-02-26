@@ -50,3 +50,16 @@ def passenger_count(start_date, end_date, control_point: list[str] = 'all') -> d
         diff_df = diff_df[
             diff_df['control_point'].isin(control_point)
             ].groupby('date').agg('sum').reset_index()
+
+    # Plot with filtered range and return
+    return alt.Chart(
+        diff_df[diff_df['date'].between(start_date, end_date)]
+        ).mark_bar().encode(
+            alt.X('date', type='temporal', title='Date'),
+            alt.Y('difference', title='Net passenger inflow'),
+            color=alt.condition(
+                alt.datum.difference > 0,
+                alt.value('green'),
+                alt.value('red')
+            )
+    ).interactive().to_dict()
