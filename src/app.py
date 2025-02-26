@@ -59,7 +59,7 @@ sidebar = html.Div(
 metrics_cards = dbc.Row(
     [
         dbc.Col(dbc.Card(dbc.CardBody([html.P("Total Passengers", className="text-center"), html.H3(id="total_passengers", className="text-center")])), width=3),
-        dbc.Col(dbc.Card(dbc.CardBody([html.P("Volume Entries", className="text-center"), html.H3(id="volume_entries", className="text-center")])), width=3),
+        dbc.Col(dbc.Card(dbc.CardBody([html.P("Volume of Entries", className="text-center"), html.H3(id="volume_entries", className="text-center")])), width=3),
     ],
     className="justify-content-center mb-4",
 )
