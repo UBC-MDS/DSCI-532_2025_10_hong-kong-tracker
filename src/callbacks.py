@@ -110,26 +110,53 @@ def register_callbacks(app):
         return fig
 
     @app.callback(
-        Output("map", "children"),
-        [Input("control_point_dropdown", "value")]
+    Output("map", "children"),
+    [
+        Input("date_picker", "start_date"),
+        Input("date_picker", "end_date"),
+        Input("control_point_dropdown", "value"),
+        Input("arrival_departure", "value")
+    ]
     )
-    def update_map(control_points):
-        # Load control points with coordinates
-        control_points_data = [
-            {"name": "Point A", "lat": 22.3193, "lon": 114.1694},
-            {"name": "Point B", "lat": 22.3080, "lon": 113.9185},
-            {"name": "Point C", "lat": 22.2849, "lon": 114.1589}
-        ]
+    def update_map(start_date, end_date, control_points, travel_types):
+        control_points_df = pd.read_csv("data/processed/control_points_hk.csv")
 
-        # Filter control points based on selection
+        start_date = pd.to_datetime(start_date) if start_date else df["date"].min()
+        end_date = pd.to_datetime(end_date) if end_date else df["date"].max()
+
+        filtered_df = df[(df["date"] >= start_date) & (df["date"] <= end_date)]
         if control_points:
-            control_points_data = [p for p in control_points_data if p["name"] in control_points]
+            filtered_df = filtered_df[filtered_df["control_point"].str.strip().isin(control_points)]
+        if travel_types:
+            filtered_df = filtered_df[filtered_df["travel_type"].str.strip().isin(travel_types)]
 
-        markers = [dl.Marker(position=(p["lat"], p["lon"]), children=dl.Popup(p["name"])) for p in control_points_data]
+    # If no data remains, return an empty Leaflet map
+        if filtered_df.empty:
+            return dl.Map(
+                [dl.TileLayer()],
+                center=[22.3193, 114.1694],  # Centering on Hong Kong
+                zoom=11,
+                style={"height": "500px", "width": "100%"}
+         )
+
+        passenger_counts = filtered_df.groupby("control_point")["passenger_count"].sum().reset_index()
+        control_points_df = control_points_df.merge(passenger_counts, on="control_point", how="right").fillna(0)
+        print(control_points_df)
+        markers = [
+            dl.CircleMarker(
+                center=(row["Latitude"], row["Longitude"]),
+                radius=max(5, min(row["passenger_count"] / 1000, 15)),  
+                color="blue" if row["passenger_count"] < 50000 else "red",
+                fill=True,
+                fillOpacity=0.6,
+                children=dl.Popup(f"{row['control_point']}: {int(row['passenger_count']):,} passengers")
+            )
+            for _, row in control_points_df.iterrows()
+        ]
 
         return dl.Map(
             [dl.TileLayer()] + markers,
-            center=[22.3193, 114.1694],
+            center=[22.3193, 114.1694],  # Centering on Hong Kong
             zoom=11,
             style={"height": "500px", "width": "100%"}
         )
