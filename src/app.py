@@ -76,7 +76,7 @@ graphs_section = dbc.Container(
         ),
         dbc.Row(
             [
-                dbc.Col(dcc.Graph(id="travel_type"), width=6),
+                dbc.Col(dcc.Graph(id="travel_method"), width=6),
                 dbc.Col(dcc.Graph(id="passenger_origin"), width=6),
             ]
         ),
