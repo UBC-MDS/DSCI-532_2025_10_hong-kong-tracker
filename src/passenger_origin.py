@@ -26,21 +26,22 @@ def passenger_origin(start_date, end_date, control_point: list[str] = None, arri
     # Create a Plotly Express bar chart
     fig = px.bar(
         grouped_df,
-        x='passenger_origin',
-        y='passenger_count',
+        x='passenger_count',
+        y='passenger_origin',
         color='passenger_origin',
+        orientation='h',
         title="Passenger Count by Passenger Origin",
         labels={'passenger_origin': 'Passenger Origin', 'passenger_count': 'Total Passengers'},
         barmode='group',
     )
 
     # Add labels on top of bars
-    fig.update_traces(text=grouped_df['passenger_count'], textposition='outside')
+    #fig.update_traces(text=grouped_df['passenger_count'], textposition='outside')
 
     # Customize layout
     fig.update_layout(
-        xaxis_title="Passenger Origin",
-        yaxis_title="Total Passengers",
+        xaxis_title="Total Passengers",
+        yaxis_title="Passenger Origin",
         showlegend=False
     )
 

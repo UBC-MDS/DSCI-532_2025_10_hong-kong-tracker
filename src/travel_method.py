@@ -29,8 +29,8 @@ def travel_method(start_date, end_date, control_point: list[str] = None, arrival
     # Create a Plotly Express bar chart
     fig = px.bar(
         grouped_df,
-        x='travel_method',
-        y='passenger_count',
+        x='passenger_count',
+        y='travel_method',
         color='travel_method',
         title="Passenger Count by Travel Method",
         labels={'travel_method': 'Travel Method', 'passenger_count': 'Total Passengers'},
@@ -39,12 +39,12 @@ def travel_method(start_date, end_date, control_point: list[str] = None, arrival
     )
 
     # Add labels on top of bars
-    fig.update_traces(text=grouped_df['passenger_count'], textposition='outside')
+    #fig.update_traces(text=grouped_df['passenger_count'], textposition='outside')
 
     # Customize layout
     fig.update_layout(
-        xaxis_title="Travel Method",
-        yaxis_title="Total Passengers",
+        xaxis_title="Total Passengers",
+        yaxis_title="Travel Method",
         showlegend=False
     )
 

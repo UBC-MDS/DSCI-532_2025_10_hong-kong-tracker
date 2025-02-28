@@ -3,8 +3,8 @@ from dash import Input, Output, dcc, html  # type: ignore
 import plotly.express as px  # type: ignore
 import dash_leaflet as dl  # type: ignore
 import dash_leaflet.express as dlx  # type: ignore
-from travel_method import travel_method
-from passenger_origin import passenger_origin
+from src.travel_method import travel_method
+from src.passenger_origin import passenger_origin
 
 # Load data
 DATA_PATH = "data/processed/data.csv"
