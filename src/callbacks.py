@@ -1,3 +1,5 @@
+from src.passenger_count import passenger_count
+
 import pandas as pd
 from dash import Input, Output, dcc, html  # type: ignore
 import plotly.express as px  # type: ignore
@@ -103,42 +105,9 @@ def register_callbacks(app):
             alt.Chart object as a dict
 
         """
-        if not start_date or not end_date:
-            return px.bar(title="Select a valid date range")
+        schema = passenger_count(df, start_date, end_date, control_points)
 
-        start_date = pd.to_datetime(start_date)
-        end_date = pd.to_datetime(end_date)
-
-        filtered_df = df[(df["date"] >= start_date) & (df["date"] <= end_date)]
-
-        if control_points:
-            filtered_df = filtered_df[filtered_df["control_point"].isin(control_points)]
-        if travel_types:
-            filtered_df = filtered_df[filtered_df["travel_type"].isin(travel_types)]
-
-        aggregated_df = filtered_df.groupby(["date", "travel_type"], as_index=False).sum()
-
-        if aggregated_df.empty:
-            return px.bar(title="No data available for the selected filters")
-
-        fig = px.bar(
-            aggregated_df,
-            x="date",
-            y="passenger_count",
-            color="travel_type",
-            title="Passenger Count Over Time",
-            labels={"passenger_count": "Number of Passengers", "date": "Date", "travel_type": "Travel Type"},
-            barmode="group",
-        )
-
-        fig.update_layout(
-            xaxis_title="Date",
-            yaxis_title="Passenger Count",
-            showlegend=True,
-            xaxis=dict(showticklabels=False)  # Hide labels on x-axis for clarity
-        )
-
-        return fig
+        return schema
 
     @app.callback(
         Output("map", "children"),
