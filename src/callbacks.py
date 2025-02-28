@@ -77,26 +77,31 @@ def register_callbacks(app):
         return compute_totals(filtered_df)
 
     @app.callback(
-        Output("passenger_count", "figure"),
+        Output("passenger_count", "spec"),
         [
             Input("date_picker", "start_date"),
             Input("date_picker", "end_date"),
             Input("control_point_dropdown", "value"),
-            Input("arrival_departure", "value"),
         ]
     )
-    def update_passenger_count(start_date, end_date, control_points, travel_types):
+    def update_passenger_count(start_date, end_date, control_points):
         """
         Updates the passenger count bar chart based on user-selected filters.
 
-        Parameters:
-            start_date (str): The start date selected in the date picker.
-            end_date (str): The end date selected in the date picker.
-            control_points (list): List of selected control points.
-            travel_types (list): List of selected travel types (arrival/departure).
+        Parameters
+        ----------
+        start_date : str
+            The start date selected in the date picker.
+        end_date : str
+            The end date selected in the date picker.
+        control_points : list 
+            List of selected control points.
 
-        Returns:
-            plotly.graph_objects.Figure: A bar chart displaying passenger count over time.
+        Returns
+        -------
+        dict
+            alt.Chart object as a dict
+
         """
         if not start_date or not end_date:
             return px.bar(title="Select a valid date range")
