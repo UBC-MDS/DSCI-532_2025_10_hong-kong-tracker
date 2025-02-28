@@ -29,9 +29,12 @@ def passenger_count(df, start_date, end_date, control_point: list[str] = None) -
     -------
     >>> passenger_count('01-01-2025', '01-20-2025', ['Airport', 'China Ferry Terminal'])
     """
-    # Load data and parse dates
-    df = pd.read_csv('../data/raw/data.csv').drop(columns='Unnamed: 0')
-    df['date'] = pd.to_datetime(df['date'], format='%d-%m-%Y')
+    # Drop unnamed column
+    df = df.drop(columns='Unnamed: 0')
+
+    # Convert dates to datetime
+    start_date = pd.to_datetime(start_date)
+    end_date = pd.to_datetime(end_date)
 
     # Pivot dataframe to calculate difference for all passenger types
     diff_df = df.pivot(index=['date', 'control_point', 'passenger_origin'],
@@ -46,7 +49,7 @@ def passenger_count(df, start_date, end_date, control_point: list[str] = None) -
     diff_df['difference'] = diff_df['Arrival'] - diff_df['Departure']
 
     # Filter for specific control points or merge all control points
-    if control_point == 'all':
+    if control_point is None or len(control_point) == 0:
         diff_df = diff_df.groupby('date').agg('sum').reset_index()
     else:
         diff_df = diff_df[
@@ -55,10 +58,14 @@ def passenger_count(df, start_date, end_date, control_point: list[str] = None) -
 
     # Plot with filtered range and return
     return alt.Chart(
-        diff_df[diff_df['date'].between(start_date, end_date)]
+        diff_df[diff_df['date'].between(start_date, end_date)],
+        title='Net Passenger Inflow Over Time'
         ).mark_bar().encode(
             alt.X('date', type='temporal', title='Date'),
             alt.Y('difference', title='Net passenger inflow'),
+            alt.Tooltip(
+                ['date', 'Arrival', 'Departure', 'difference'],
+            ),
             color=alt.condition(
                 alt.datum.difference > 0,
                 alt.value('green'),
