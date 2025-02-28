@@ -1,7 +1,7 @@
 from dash import Dash, html, dcc  # type: ignore
 import dash_bootstrap_components as dbc  # type: ignore
 import pandas as pd
-from src.callbacks import register_callbacks  # Import the callback registration function
+from callbacks import register_callbacks  # Import the callback registration function
 from datetime import timedelta
 
 # Load data to get control point values
@@ -75,7 +75,7 @@ graphs_section = dbc.Container(
         ),
         dbc.Row(
             [
-                dbc.Col(dcc.Graph(id="travel_type"), width=6),
+                dbc.Col(dcc.Graph(id="travel_method"), width=6),
                 dbc.Col(dcc.Graph(id="passenger_origin"), width=6),
             ]
         ),
@@ -112,4 +112,5 @@ register_callbacks(app)
 
 # Run the app
 if __name__ == "__main__":
-    app.run_server(debug=False, port=8080)
+    # app.run_server(debug=False, port=8080)
+    app.run_server(debug=True)

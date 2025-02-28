@@ -3,6 +3,8 @@ from dash import Input, Output, dcc, html  # type: ignore
 import plotly.express as px  # type: ignore
 import dash_leaflet as dl  # type: ignore
 import dash_leaflet.express as dlx  # type: ignore
+from travel_method import travel_method
+from passenger_origin import passenger_origin
 
 # Load data
 DATA_PATH = "data/processed/data.csv"
@@ -197,3 +199,26 @@ def register_callbacks(app):
             zoom=11,
             style={"height": "500px", "width": "100%"}
         )
+    @app.callback(
+    Output("travel_method", "figure"),
+    [
+        Input("date_picker", "start_date"),
+        Input("date_picker", "end_date"),
+        Input("control_point_dropdown", "value"),
+        Input("arrival_departure", "value"),
+    ]
+    )
+    def update_travel_method(start_date, end_date, control_point, arrival_departure):
+        return travel_method(start_date, end_date, control_point, arrival_departure)
+    
+    @app.callback(
+    Output("passenger_origin", "figure"),
+    [
+        Input("date_picker", "start_date"),
+        Input("date_picker", "end_date"),
+        Input("control_point_dropdown", "value"),
+        Input("arrival_departure", "value"),
+    ]
+    )
+    def update_passenger_origin(start_date, end_date, control_point, arrival_departure):
+        return passenger_origin(start_date, end_date, control_point, arrival_departure)
