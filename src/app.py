@@ -1,7 +1,7 @@
 from dash import Dash, html, dcc  # type: ignore
 import dash_bootstrap_components as dbc  # type: ignore
 import pandas as pd
-from callbacks import register_callbacks  # Import the callback registration function
+from src.callbacks import register_callbacks  # Import the callback registration function
 from datetime import timedelta
 
 # Load data to get control point values
@@ -112,5 +112,4 @@ register_callbacks(app)
 
 # Run the app
 if __name__ == "__main__":
-    # app.run_server(debug=False, port=8080)
-    app.run_server(debug=True)
+    app.run_server(debug=False, port=8080)
