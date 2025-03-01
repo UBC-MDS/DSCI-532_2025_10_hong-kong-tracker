@@ -1,7 +1,30 @@
 import pandas as pd
-import plotly.express as px
+import plotly.express as px # type: ignore
 
-def passenger_origin(start_date, end_date, control_point: list[str] = None, arrival_departure: list[str] = None):
+def passenger_origin(start_date, end_date, control_point=None, arrival_departure=None):
+    """
+    Generates a horizontal bar chart visualizing the total number of passengers 
+    categorized by their country of origin over a specified date range, 
+    optionally filtered by control points and arrival/departure types.
+
+    Parameters:
+    ----------
+    start_date : str or pd.Timestamp
+        The start date for filtering the dataset (format: YYYY-MM-DD).
+    end_date : str or pd.Timestamp
+        The end date for filtering the dataset (format: YYYY-MM-DD).
+    control_point : list of str, optional
+        A list of selected control points to filter passenger data. 
+        If None or ["all"], no filtering is applied.
+    arrival_departure : list of str, optional
+        A list specifying whether to include 'Arrival', 'Departure', or both. 
+        If None or ["all"], no filtering is applied.
+
+    Returns:
+    -------
+    plotly.graph_objects.Figure
+        A Plotly horizontal bar chart displaying passenger counts by country of origin.
+    """
     # Load data
     df = pd.read_csv('data/processed/data.csv').drop(columns='Unnamed: 0')
     df['date'] = pd.to_datetime(df['date'], format='%d-%m-%Y')
