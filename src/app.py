@@ -1,6 +1,6 @@
 from dash import Dash, html, dcc  # type: ignore
 import dash_bootstrap_components as dbc  # type: ignore
-import dash_vega_components as dvc
+import dash_vega_components as dvc # type: ignore
 import pandas as pd
 from src.callbacks import register_callbacks  # Import the callback registration function
 from datetime import timedelta
@@ -92,6 +92,28 @@ map_section = html.Div(
     style={"marginTop": "20px"},
 )
 
+# --- App Description ---
+app_description = html.Ul(
+    [
+        html.Li("This interactive dashboard provides real-time insights into passenger traffic across various control points in Hong Kong."),
+        html.Li("Users can explore travel trends based on arrivals, departures, and different travel methods."),
+        html.Li("Developed by: Nelli Hovhannisyan, Paramveer Singh, Hankun Xiao, Yichun Liu "),
+        html.Li(html.A("GitHub Repository", href="https://github.com/UBC-MDS/DSCI-532_2025_10_hong-kong-tracker", target="_blank")),
+        html.Li("Last Updated: 2025-MARCH-02"),
+    ]
+)
+
+# --- Footer Section ---
+footer = dbc.Container(
+    html.Div(
+        [
+            html.Hr(),
+            html.P(app_description, className="text-center"),
+        ],
+        style={"marginTop": "30px", "padding": "20px"}
+    )
+)
+
 # --- Main Content Layout ---
 content = html.Div(
     [
@@ -101,6 +123,7 @@ content = html.Div(
         graphs_section,
         html.Hr(),
         map_section,
+        footer,
     ],
     style={"marginLeft": "22%", "padding": "20px"},
 )
