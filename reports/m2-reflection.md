@@ -55,11 +55,13 @@ Despite these challenges, the dashboard demonstrates several strengths:
 ## **Future Enhancements**  
 
 To further improve the dashboard, we propose the following refinements:  
-
-- **Enhanced Layout Adaptability**: Implement **responsive design principles** to ensure optimal visualization across different screen sizes.  
+  
 - **Improved Geospatial Interactivity**: Introduce **direct filtering within the map component**, allowing users to interact with specific control points more intuitively.  
 - **Harmonization of Chart Styling**: Apply a consistent visual theme across all charts to improve the overall user experience.
 - **Performance Optimization:** The current application exhibits slow loading times, particularly when handling filters or updating the map. Optimizing data processing efficiency might help the responsiveness.
+- **Control Points:** Some control points appear to be missing data. It is unclear whether this is a bug, so further investigation is needed.  
+- **Date Picker:** Verify that the date picker’s default values are correctly set.  
+- **Travel Type:** When no filters are selected, both options still appear as selected. This behavior needs to be reviewed.  
 
 If time permits, these enhancements will be prioritized to maximize the dashboard’s effectiveness.  
 
