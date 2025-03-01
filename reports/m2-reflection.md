@@ -6,7 +6,7 @@ We have incorporated **interactive filters**, allowing users to select a **time 
 The **Net Passenger Flow chart** has been implemented as a **stacked area chart**  
 to distinguish inflow (arrivals) and outflow (departures).  
 
-Additionally, the **Passenger Count graph** is displayed as a **grouped bar chart**, showing variations over time.  
+Additionally, the **Passenger Count graph** is displayed as a **diverging bar chart**, showing variations over time.  
 The **Passenger Origin and Travel Type charts** are presented as **horizontal bar charts**,  
 effectively visualizing different passenger categories.  
 
