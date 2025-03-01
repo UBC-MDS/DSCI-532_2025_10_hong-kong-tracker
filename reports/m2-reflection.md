@@ -23,7 +23,7 @@ Several visualizations have been employed to effectively communicate these metri
 - The **Passenger Origin and Travel Type charts** are represented as **horizontal bar charts**, offering a clear comparison of different passenger categories.  
 - A **geospatial visualization** using **Dash Leaflet** displays control points with **circle markers**, where marker size is proportional to passenger volume.  
 
-We will need to do some rearrangement of the filters for a better user experience, and choose better default date range.
+We will need to do some **rearrangement** of the filters for a better user experience, and choose better default date range.
 
 ## **Outstanding Challenges**  
 
