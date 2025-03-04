@@ -1,58 +1,106 @@
-# Dashboard of Hong Kong Passenger Traffic Tracker
+# 🚀 Dashboard of Hong Kong Passenger Traffic Tracker
 
-Our dashboard visualizes passenger movement statistics, categorized by entry points, traveler types (HK residents, Mainland visitors, others), and trends over time.
+Welcome to the **Hong Kong Passenger Traffic Tracker**—your one-stop dashboard for uncovering the latest trends in cross-border movement! Whether you're a policymaker, researcher, or just plain curious, we've got the data you need to make sense of the ebb and flow of passengers.
 
 ## 📖 The Problem
 
-Hong Kong's control points handle massive cross-border movements, but without clear visual tools, spotting trends and making data-driven decisions is tough. Fragmented data complicates resource allocation and policy planning, especially amid shifting travel restrictions.
+Hong Kong’s control points see a staggering amount of cross-border movement daily. But with raw data scattered across multiple sources, identifying trends and making informed decisions can feel like looking for a needle in a haystack. Without clear visualizations, optimizing transportation, resource allocation, and policy planning is a serious challenge—especially when travel restrictions keep changing!
 
 ## 💡 The Solution
 
-Our dashboard provides dynamic filters, historical comparisons, and real-time insights to help optimize immigration policies and transportation planning. Intuitive visuals empower decision-makers to allocate resources effectively, ensuring smooth cross-border movement and smarter governance.
+Enter our **interactive dashboard**! With dynamic filters, historical comparisons, and real-time insights, we make it easier than ever to track cross-border trends. Whether it's managing peak hours, adjusting resources, or keeping up with shifting traveler patterns, our dashboard helps decision-makers navigate Hong Kong’s dynamic passenger flow with confidence.
 
-## 💻 Usage
+## 💻 How to Use It
 
-Coming Soon
+Our dashboard offers three key filters to help you refine your data exploration:
 
-### Dashboard
+- **📅 Date Filter** – Select specific dates or date ranges to analyze passenger traffic trends over time.
+- **🚪 Control Point Filter** – Focus on specific entry and exit points to see how traffic varies across different locations.
+- **🛂 Travel Type Filter** – Segment travelers by category (Hong Kong residents, Mainland visitors, and others) to understand movement patterns.
 
-Coming Soon
+Simply adjust these filters to uncover insights and trends in Hong Kong's passenger flow!
 
-### Developer Guide
+### 🌍 Dashboard
 
-1. Clone this GitHub repository (git clone repo URL)
+Click [here](https://five32-group-10.onrender.com/) to check out the live dashboard!
 
-```bash
-git clone git@github.com:UBC-MDS/DSCI-532_2025_10_hong-kong-tracker.git
-```
+### 🎬 Demo
 
-2. Create the virtual environment
+<img src="img/demo.gif" alt="Demo GIF" width="600">
 
-```bash
-conda env create -f environment.yaml
-conda activate 532
-```
+## 🛠 Developer Guide
 
-The rest is coming soon
+1. **Clone this GitHub repository**
+   Run the following command to clone the repository:
 
-## 👥 Contributors
+   ```bash
+   git clone git@github.com:UBC-MDS/DSCI-532_2025_10_hong-kong-tracker.git
+   ```
 
-Nelli Hovhannisyan, Paramveer Singh, Hankun Xiao, Yichun Liu
+2. **Create the virtual environment**
+   Use Conda to set up and activate the environment:
 
-## 🔇 Contributing
+   ```bash
+   conda env create -f environment.yaml
+   conda activate 532
+   ```
 
-Interested in contributing? Check out the [contributing guidelines](https://github.com/UBC-MDS/DSCI-532_2025_10_hong-kong-tracker/blob/main/CONTRIBUTING.md). Please note that this project is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.
+3. **Modify imports and enable debug mode**
+
+   - In `app.py` and `callbacks.py`, **remove** `src` from the imports, specifically from:
+
+     ```python
+     src.callbacks
+     src.travel_method
+     src.passenger_origin
+     src.passenger_count
+     ```
+  
+   - In `app.py`, **set** `debug = True` at the bottom.
+
+   **Note:** Before pushing changes, revert these modifications to ensure a successful deployment.
+
+4. **Run the application**
+   From the project root directory, execute:
+
+   ```bash
+   python src/app.py
+   ```
+
+5. **Access the application**
+   Open your browser and go to:
+
+   ```
+   http://127.0.0.1:8080/
+   ```
+
+   to see the dashboard in action!
+
+## 👥 Meet the Team
+
+We’re a team of passionate data scientists on a mission to make data-driven decision-making easier:
+
+- **Nelli Hovhannisyan**
+- **Paramveer Singh**
+- **Hankun Xiao**
+- **Yichun Liu**
+
+## 🎭 Contributing
+
+Want to improve the dashboard or add new features? Check out our [contributing guidelines](https://github.com/UBC-MDS/DSCI-532_2025_10_hong-kong-tracker/blob/main/CONTRIBUTING.md) before getting started.
+
+By contributing, you agree to follow our Code of Conduct—let’s keep it collaborative and fun! 🚀
 
 ## 📚 License
 
-This project is licensed under the terms of the [MIT license](https://github.com/UBC-MDS/DSCI-532_2025_10_hong-kong-tracker/blob/main/LICENSE.md).
+This project is licensed under the [MIT license](https://github.com/UBC-MDS/DSCI-532_2025_10_hong-kong-tracker/blob/main/LICENSE.md).
 
-The Daily Passenger Traffic dataset, as part of the DATA.GOV.HK datasets, is free to use for both commercial and non-commercial purposes, subject to the [Terms of Use](https://data.gov.hk/en/terms-and-conditions).
+The **Daily Passenger Traffic dataset**, sourced from **DATA.GOV.HK**, is free to use for both commercial and non-commercial purposes, following the official [Terms of Use](https://data.gov.hk/en/terms-and-conditions).
 
-## Support
+## 💬 Need Help?
 
-If you encounter any issues, require assistance, need to report a bug, or request a feature, please file an issue through our [GitHub Issues](https://github.com/UBC-MDS/DSCI-532_2025_10_hong-kong-tracker/issues).
+If you run into any issues, have feature suggestions, or just want to say hi, drop us an issue on [GitHub Issues](https://github.com/UBC-MDS/DSCI-532_2025_10_hong-kong-tracker/issues). We’d love to hear from you! 😊
 
-## Reference
+## 📖 References
 
-Data resource: [Hong Kong Daily Passenger Traffic Dataset](https://data.gov.hk/en-data/dataset/hk-immd-set5-statistics-daily-passenger-traffic)
+Data sourced from: [Hong Kong Daily Passenger Traffic Dataset](https://data.gov.hk/en-data/dataset/hk-immd-set5-statistics-daily-passenger-traffic).
