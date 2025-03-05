@@ -4,8 +4,9 @@
 
 import pandas as pd
 import altair as alt
+import plotly.graph_objects.Figure
 
-def passenger_count(df, start_date, end_date, control_point: list[str] = None) -> dict:
+def passenger_count(df, start_date, end_date, control_point: list[str] = None) -> plotly.graph_objects.Figure:
     """
     Function used with callback to return passenger count chart
 
@@ -22,8 +23,8 @@ def passenger_count(df, start_date, end_date, control_point: list[str] = None) -
 
     Returns
     -------
-        dict
-    Altair chart dictionary schema to render
+    plotly.graph_objects.Figure
+            A Plotly figure showing the net passenger inflow over time
 
     Example
     -------
