@@ -3,8 +3,8 @@
 # 25 February 2025
 
 import pandas as pd
-import altair as alt
 import plotly.graph_objects.Figure
+import plotly.express as px
 
 def passenger_count(df, start_date, end_date, control_point: list[str] = None) -> plotly.graph_objects.Figure:
     """
@@ -58,18 +58,28 @@ def passenger_count(df, start_date, end_date, control_point: list[str] = None) -
             ].groupby('date').agg('sum').reset_index()
 
     # Plot with filtered range and return
-    return alt.Chart(
-        diff_df[diff_df['date'].between(start_date, end_date)],
-        title='Net Passenger Inflow Over Time'
-        ).mark_bar().encode(
-            alt.X('date', type='temporal', title='Date'),
-            alt.Y('difference', title='Net passenger inflow'),
-            alt.Tooltip(
-                ['date', 'Arrival', 'Departure', 'difference'],
-            ),
-            color=alt.condition(
-                alt.datum.difference > 0,
-                alt.value('green'),
-                alt.value('red')
-            )
-    ).interactive().to_dict()
+    filtered_df = diff_df[diff_df['date'].between(start_date, end_date)]
+
+    # Color list
+    colors = ['green' if diff > 0 else 'red' for diff in filtered_df['difference']]
+
+    # Create plotly chart object
+    fig = px.bar(
+        filtered_df,
+        x='date',
+        y='difference',
+        title='Net Passenger Inflow Over Time',
+        labels={'date': 'Date', 'difference': 'Net passenger inflow (count)'},
+        hover_data=['date', 'Arrival', 'Departure', 'difference']
+    )
+
+    # Update the bar colors
+    fig.update_traces(marker_color=colors)
+
+    # Update the background to be white
+    fig.update_layout(
+        plot_bgcolor='white',
+        paper_bgcolor='white'
+    )
+
+    return fig
