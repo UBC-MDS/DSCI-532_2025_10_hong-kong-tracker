@@ -80,7 +80,7 @@ def register_callbacks(app):
         return compute_totals(filtered_df)
 
     @app.callback(
-        Output("passenger_count", "spec"),
+        Output("passenger_count", "figure"),
         [
             Input("date_picker", "start_date"),
             Input("date_picker", "end_date"),
