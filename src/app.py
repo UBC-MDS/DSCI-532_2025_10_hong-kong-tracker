@@ -71,7 +71,7 @@ graphs_section = dbc.Container(
         dbc.Row(
             [
                 dbc.Col(dcc.Graph(id="net_passenger_inflow"), width=6),
-                dbc.Col(dvc.Vega(id="passenger_count", spec={}), width=6),
+                dbc.Col(dcc.Graph(id="passenger_count"), width=6),
             ]
         ),
         dbc.Row(
