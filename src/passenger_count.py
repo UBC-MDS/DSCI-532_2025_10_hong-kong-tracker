@@ -75,7 +75,8 @@ def passenger_count(df, start_date, end_date, control_point: list[str] = None) -
     )
 
     # Update the bar colors
-    fig.update_traces(marker_color=colors)
+    fig.update_traces(marker_color=colors,
+                      marker_line_width=0)
 
     # Update the background to be white
     fig.update_layout(
