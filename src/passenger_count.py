@@ -3,7 +3,7 @@
 # 25 February 2025
 
 import pandas as pd
-import plotly.graph_objects.Figure
+import plotly.graph_objects
 import plotly.express as px
 
 def passenger_count(df, start_date, end_date, control_point: list[str] = None) -> plotly.graph_objects.Figure:
