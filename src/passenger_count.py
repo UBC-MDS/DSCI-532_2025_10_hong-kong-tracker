@@ -60,8 +60,14 @@ def passenger_count(df, start_date, end_date, control_point: list[str] = None) -
     # Plot with filtered range and return
     filtered_df = diff_df[diff_df['date'].between(start_date, end_date)]
 
+    # Define colorblind-friendly colors
+    # Derived from "Coloring for Colorblindness" by David Nichols
+    # https://davidmathlogic.com/colorblind/
+    positive_color = '#005AB5'
+    negative_color = '#DC3220'
+
     # Color list
-    colors = ['green' if diff > 0 else 'red' for diff in filtered_df['difference']]
+    colors = [positive_color if diff > 0 else negative_color for diff in filtered_df['difference']]
 
     # Create plotly chart object
     fig = px.bar(
