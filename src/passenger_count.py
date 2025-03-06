@@ -81,7 +81,8 @@ def passenger_count(df, start_date, end_date, control_point: list[str] = None) -
     # Update the background to be white
     fig.update_layout(
         plot_bgcolor='white',
-        paper_bgcolor='white'
+        paper_bgcolor='white',
+        showlegend=False
     )
 
     return fig
