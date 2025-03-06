@@ -106,7 +106,10 @@ def register_callbacks(app):
             A Plotly figure showing the net passenger inflow over time
 
         """
-        schema = passenger_count(df, start_date, end_date, control_points)
+        try:
+            schema = passenger_count(df, start_date, end_date, control_points)
+        except Exception:
+            schema = passenger_count(df, start_date, end_date, control_points)
 
         return schema
 
