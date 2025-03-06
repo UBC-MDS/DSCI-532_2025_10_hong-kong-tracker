@@ -70,7 +70,8 @@ def passenger_count(df, start_date, end_date, control_point: list[str] = None) -
         y='difference',
         title='Net Passenger Inflow Over Time',
         labels={'date': 'Date', 'difference': 'Net passenger inflow (count)'},
-        hover_data=['date', 'Arrival', 'Departure', 'difference']
+        hover_data=['date', 'Arrival', 'Departure', 'difference'],
+        template=None
     )
 
     # Update the bar colors
