@@ -91,4 +91,8 @@ def passenger_count(df, start_date, end_date, control_point: list[str] = None) -
         showlegend=False
     )
 
+    # Make gridlines black in color
+    fig.update_yaxes(gridcolor='black')
+    fig.update_xaxes(gridcolor='lightgrey')
+
     return fig
