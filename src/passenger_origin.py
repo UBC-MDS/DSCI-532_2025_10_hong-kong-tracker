@@ -43,29 +43,35 @@ def passenger_origin(start_date, end_date, control_point=None, arrival_departure
     # Aggregate data by travel passenger_origin
     grouped_df = df.groupby('passenger_origin', as_index=False)['passenger_count'].sum()
 
-    # Sort data by the custom order
-    grouped_df = grouped_df.sort_values('passenger_origin')
+    # Define the custom order for passenger origin
+    category_order = ["Hong Kong Residents", "Mainland Visitors", "Other Visitors"]
 
     # Create a Plotly Express bar chart
     fig = px.bar(
         grouped_df,
         x='passenger_count',
         y='passenger_origin',
-        color='passenger_origin',
         orientation='h',
         title="Passenger Count by Passenger Origin",
         labels={'passenger_origin': 'Passenger Origin', 'passenger_count': 'Total Passengers'},
         barmode='group',
+        category_orders={"passenger_origin": category_order}  # Enforces the desired order
     )
 
     # Add labels on top of bars
     #fig.update_traces(text=grouped_df['passenger_count'], textposition='outside')
-
+    
+    # Set bar color
+    fig.update_traces(marker_color='#5297C7')
     # Customize layout
     fig.update_layout(
         xaxis_title="Total Passengers",
         yaxis_title="Passenger Origin",
-        showlegend=False
+        showlegend=False,
+        plot_bgcolor='white',  # Remove background color
+        paper_bgcolor='white',  # Remove outer background color
+        xaxis=dict(showgrid=False),  # Remove x-axis grid
+        yaxis=dict(showgrid=False)   # Remove y-axis grid
     )
 
     return fig

@@ -44,17 +44,13 @@ def travel_method(start_date, end_date, control_point=None, arrival_departure=No
     grouped_df = df.groupby('travel_method', as_index=False)['passenger_count'].sum()
 
     # Define the custom order for travel methods
-    category_order = ["by sea", "by air", "by land"]
-
-    # Sort data by the custom order
-    grouped_df = grouped_df.sort_values('travel_method')
+    category_order = ["by land", "by air", "by sea"]
 
     # Create a Plotly Express bar chart
     fig = px.bar(
         grouped_df,
         x='passenger_count',
         y='travel_method',
-        color='travel_method',
         title="Passenger Count by Travel Method",
         labels={'travel_method': 'Travel Method', 'passenger_count': 'Total Passengers'},
         barmode='group',
@@ -64,10 +60,17 @@ def travel_method(start_date, end_date, control_point=None, arrival_departure=No
     # Add labels on top of bars
     #fig.update_traces(text=grouped_df['passenger_count'], textposition='outside')
 
+    # Set bar color
+    fig.update_traces(marker_color='#5297C7')
+
     # Customize layout
     fig.update_layout(
         xaxis_title="Total Passengers",
         yaxis_title="Travel Method",
+        plot_bgcolor='white',  # Remove background color
+        paper_bgcolor='white',  # Remove outer background color
+        xaxis=dict(showgrid=False),  # Remove x-axis grid
+        yaxis=dict(showgrid=False),   # Remove y-axis grid
         showlegend=False
     )
 
