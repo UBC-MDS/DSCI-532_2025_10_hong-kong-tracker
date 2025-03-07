@@ -3,9 +3,10 @@
 # 25 February 2025
 
 import pandas as pd
-import altair as alt
+import plotly.graph_objects
+import plotly.express as px
 
-def passenger_count(df, start_date, end_date, control_point: list[str] = None) -> dict:
+def passenger_count(df, start_date, end_date, control_point: list[str] = None) -> plotly.graph_objects.Figure:
     """
     Function used with callback to return passenger count chart
 
@@ -22,8 +23,8 @@ def passenger_count(df, start_date, end_date, control_point: list[str] = None) -
 
     Returns
     -------
-        dict
-    Altair chart dictionary schema to render
+    plotly.graph_objects.Figure
+            A Plotly figure showing the net passenger inflow over time
 
     Example
     -------
@@ -57,18 +58,41 @@ def passenger_count(df, start_date, end_date, control_point: list[str] = None) -
             ].groupby('date').agg('sum').reset_index()
 
     # Plot with filtered range and return
-    return alt.Chart(
-        diff_df[diff_df['date'].between(start_date, end_date)],
-        title='Net Passenger Inflow Over Time'
-        ).mark_bar().encode(
-            alt.X('date', type='temporal', title='Date'),
-            alt.Y('difference', title='Net passenger inflow'),
-            alt.Tooltip(
-                ['date', 'Arrival', 'Departure', 'difference'],
-            ),
-            color=alt.condition(
-                alt.datum.difference > 0,
-                alt.value('green'),
-                alt.value('red')
-            )
-    ).interactive().to_dict()
+    filtered_df = diff_df[diff_df['date'].between(start_date, end_date)]
+
+    # Define colorblind-friendly colors
+    # Derived from "Coloring for Colorblindness" by David Nichols
+    # https://davidmathlogic.com/colorblind/
+    positive_color = '#005AB5'
+    negative_color = '#DC3220'
+
+    # Color list
+    colors = [positive_color if diff > 0 else negative_color for diff in filtered_df['difference']]
+
+    # Create plotly chart object
+    fig = px.bar(
+        filtered_df,
+        x='date',
+        y='difference',
+        title='Net Passenger Inflow Over Time',
+        labels={'date': 'Date', 'difference': 'Net passenger inflow (count)'},
+        hover_data=['date', 'Arrival', 'Departure', 'difference'],
+        template=None
+    )
+
+    # Update the bar colors
+    fig.update_traces(marker_color=colors,
+                      marker_line_width=0)
+
+    # Update the background to be white
+    fig.update_layout(
+        plot_bgcolor='white',
+        paper_bgcolor='white',
+        showlegend=False
+    )
+
+    # Make gridlines black in color
+    fig.update_yaxes(gridcolor='black')
+    fig.update_xaxes(gridcolor='lightgrey')
+
+    return fig

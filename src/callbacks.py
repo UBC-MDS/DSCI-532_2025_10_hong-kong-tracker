@@ -80,7 +80,7 @@ def register_callbacks(app):
         return compute_totals(filtered_df)
 
     @app.callback(
-        Output("passenger_count", "spec"),
+        Output("passenger_count", "figure"),
         [
             Input("date_picker", "start_date"),
             Input("date_picker", "end_date"),
@@ -89,24 +89,27 @@ def register_callbacks(app):
     )
     def update_passenger_count(start_date, end_date, control_points):
         """
-        Updates the passenger count bar chart based on user-selected filters.
+        Updates the net passenger count bar chart based on user-selected filters.
 
         Parameters
         ----------
         start_date : str
-            The start date selected in the date picker.
+            The start date selected in the date picker
         end_date : str
-            The end date selected in the date picker.
+            The end date selected in the date picker
         control_points : list 
-            List of selected control points.
+            List of selected control points
 
         Returns
         -------
-        dict
-            alt.Chart object as a dict
+        plotly.graph_objects.Figure
+            A Plotly figure showing the net passenger inflow over time
 
         """
-        schema = passenger_count(df, start_date, end_date, control_points)
+        try:
+            schema = passenger_count(df, start_date, end_date, control_points)
+        except Exception:
+            schema = passenger_count(df, start_date, end_date, control_points)
 
         return schema
 
