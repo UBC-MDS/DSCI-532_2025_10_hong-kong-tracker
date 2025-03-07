@@ -261,9 +261,14 @@ def register_callbacks(app):
             color="travel_type",  # Separate Arrivals and Departures
             labels={"passenger_count": "Passenger Count", "date": "Date", "travel_type": "Travel Type"},
             title="Passenger Flow Over Time (Arrivals & Departures)",
-            color_discrete_map={"Arrival": "blue", "Departure": "orange"},  # Customize colors
+            color_discrete_map={"Arrival": "#ADD8E6", "Departure": "#00008B"},  # Changed to light&dark blue
         )
 
-        fig.update_layout(showlegend=False)
+        fig.update_layout(
+            showlegend=False,
+            plot_bgcolor="white",  # Removes grey background
+            paper_bgcolor="white"  # Ensures no grey on the outer area
+        )
+
 
         return fig
