@@ -30,14 +30,16 @@ def travel_method(start_date, end_date, control_point=None, arrival_departure=No
     df['date'] = pd.to_datetime(df['date'], format='%d-%m-%Y')
 
     # Filter by control points (if specified)
-    if control_point and control_point != ['all']:  # Ensure it's not empty or "all"
+    if control_point:  # Ensure it's not empty or "all"
         df = df[df['control_point'].isin(control_point)]
 
     # Filter by travel type (arrival/departure) if specified
-    if arrival_departure and arrival_departure != ['all']:
+    if arrival_departure:
         df = df[df['travel_type'].isin(arrival_departure)]
 
     # Filter by date range
+    start_date = pd.to_datetime(start_date)
+    end_date = pd.to_datetime(end_date)
     df = df[df['date'].between(start_date, end_date)]
 
     # Aggregate data by travel method
