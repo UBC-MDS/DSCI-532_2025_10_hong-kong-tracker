@@ -1,7 +1,7 @@
 import pandas as pd
 import plotly.express as px # type: ignore
 
-def passenger_origin(start_date, end_date, control_point=None, arrival_departure=None):
+def passenger_origin(start_date, end_date, control_point, arrival_departure):
     """
     Generates a horizontal bar chart visualizing the total number of passengers 
     categorized by their country of origin over a specified date range, 
@@ -30,13 +30,15 @@ def passenger_origin(start_date, end_date, control_point=None, arrival_departure
     df['date'] = pd.to_datetime(df['date'], format='%d-%m-%Y')
 
     # Filter by control points (if specified)
-    if control_point and control_point != ['all']:  # Ensure it's not empty or "all"
+    if control_point:  # Ensure it's not empty
         df = df[df['control_point'].isin(control_point)]
 
     # Filter by travel type (arrival/departure) if specified
-    if arrival_departure and arrival_departure != ['all']:
+    if arrival_departure:
         df = df[df['travel_type'].isin(arrival_departure)]
-
+    
+    start_date = pd.to_datetime(start_date)
+    end_date = pd.to_datetime(end_date)
     # Filter by date range
     df = df[df['date'].between(start_date, end_date)]
 
@@ -62,7 +64,7 @@ def passenger_origin(start_date, end_date, control_point=None, arrival_departure
     #fig.update_traces(text=grouped_df['passenger_count'], textposition='outside')
     
     # Set bar color
-    fig.update_traces(marker_color='#5297C7')
+    fig.update_traces(marker_color='#191970')
     # Customize layout
     fig.update_layout(
         xaxis_title="Total Passengers",
