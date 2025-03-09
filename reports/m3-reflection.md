@@ -21,5 +21,5 @@ In this milestone, we focused on refining our visualizations to create a more co
 
 ## Potential Future Improvements and Additions  
 
-1. **Enhanced Loading Speed and Responsiveness**: We can explore deploying the dashboard on a more powerful platform with increased memory bandwidth. Alternatively, we can optimize the workflow by hosting our data in a database. This would allow the front-end to process user inputs, send SQL queries to the database, and then visualize the queried output. This approach would shift the computational load to the database server.  
+1. **Dashboard Loading Speed and Stability**: Our dashboard processes a large dataset, and the computational power of Render.com is limited. It takes around **15 to 30 seconds** for the dashboard to fully load. Additionally, sometimes the app does not render initially, requiring the user to apply a filter or refresh the page. This compromises the user experience.
 2. **Dynamic Time-Series Insights**: We can implement dynamic time-series analysis based on the user's selected date range. For example, if a user selects a **year**, the dashboard could display a **monthly breakdown**; if a user selects a **month**, the dashboard could display a **weekly breakdown**. This would provide more in-depth insights.  
