@@ -63,7 +63,7 @@ def passenger_count(df, start_date, end_date, control_point: list[str] = None) -
     # Define colorblind-friendly colors
     # Derived from "Coloring for Colorblindness" by David Nichols
     # https://davidmathlogic.com/colorblind/
-    positive_color = '#005AB5'
+    positive_color = '#00008B'
     negative_color = '#DC3220'
 
     # Color list

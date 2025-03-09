@@ -1,5 +1,5 @@
 import pandas as pd
-from dash import Input, Output, dcc, html  # type: ignore
+from dash import Input, Output # type: ignore
 import plotly.express as px  # type: ignore
 import dash_leaflet as dl  # type: ignore
 import dash_leaflet.express as dlx  # type: ignore
@@ -161,7 +161,6 @@ def register_callbacks(app):
             dl.CircleMarker(
                 center=(row["Latitude"], row["Longitude"]),
                 radius=max(5, min(row["passenger_count"] / 1000, 15)),  
-                color="blue" if row["passenger_count"] < 50000 else "red",
                 fill=True,
                 fillOpacity=0.6,
                 children=dl.Popup(f"{row['control_point']}: {int(row['passenger_count']):,} passengers")
@@ -260,7 +259,7 @@ def register_callbacks(app):
             y="passenger_count",
             color="travel_type",  # Separate Arrivals and Departures
             labels={"passenger_count": "Passenger Count", "date": "Date", "travel_type": "Travel Type"},
-            title="Passenger Flow Over Time (Arrivals & Departures)",
+            title="Passenger Flow Over Time",
             color_discrete_map={"Arrival": "#ADD8E6", "Departure": "#00008B"},  # Changed to light&dark blue
         )
 

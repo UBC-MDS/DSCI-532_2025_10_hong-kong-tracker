@@ -63,7 +63,7 @@ def travel_method(start_date, end_date, control_point=None, arrival_departure=No
     #fig.update_traces(text=grouped_df['passenger_count'], textposition='outside')
 
     # Set bar color
-    fig.update_traces(marker_color='#5297C7')
+    fig.update_traces(marker_color='#191970')
 
     # Customize layout
     fig.update_layout(
