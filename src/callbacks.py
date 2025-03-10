@@ -261,11 +261,20 @@ def register_callbacks(app):
             color_discrete_map={"Arrival": "#ADD8E6", "Departure": "#00008B"},  # Changed to light&dark blue
         )
 
+
         fig.update_layout(
-            showlegend=False,
-            plot_bgcolor="white",  # Removes grey background
-            paper_bgcolor="white"  # Ensures no grey on the outer area
+            legend_title="Travel Type",  # Set a title for the legend
+            legend=dict(
+                x=1,  # Position legend to the right
+                y=1,
+                bgcolor="white",  # White background for visibility
+                bordercolor="black",
+                borderwidth=1
+            ),
+             plot_bgcolor="white",  # Removes grey background
+             paper_bgcolor="white"  # Ensures no grey on the outer area
         )
+
 
 
         return fig
