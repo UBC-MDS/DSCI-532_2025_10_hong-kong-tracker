@@ -145,7 +145,7 @@ graphs_section = dls.Hash(
         ])
     ], style={"margin-bottom": "30px"}),
     color="#435278",
-    speed_multiplier=5,
+    speed_multiplier=2,
     size=300,
     fullscreen=True
 )
