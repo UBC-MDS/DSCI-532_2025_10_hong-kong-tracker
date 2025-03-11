@@ -257,7 +257,7 @@ def register_callbacks(app):
             y="passenger_count",
             color="travel_type",  # Separate Arrivals and Departures
             labels={"passenger_count": "Passenger Count", "date": "Date", "travel_type": "Travel Type"},
-            title="Passenger Flow Over Time (Arrivals & Departures)",
+            title="Passenger Flow Over Time",
             color_discrete_map={"Arrival": "#ADD8E6", "Departure": "#00008B"},  # Changed to light&dark blue
         )
 
