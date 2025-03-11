@@ -1,6 +1,6 @@
 import pandas as pd
 import functools
-from dash import Input, Output # type: ignore
+from dash import Input, Output, dcc, html  # type: ignore
 import plotly.express as px  # type: ignore
 import dash_leaflet as dl  # type: ignore
 import dash_leaflet.express as dlx  # type: ignore
@@ -82,7 +82,7 @@ def register_callbacks(app):
         return compute_totals(filtered_df)
 
     @app.callback(
-        Output("passenger_count", "figure"),
+        Output("passenger_count", "spec"),
         [
             Input("date_picker", "start_date"),
             Input("date_picker", "end_date"),
@@ -91,27 +91,24 @@ def register_callbacks(app):
     )
     def update_passenger_count(start_date, end_date, control_points):
         """
-        Updates the net passenger count bar chart based on user-selected filters.
+        Updates the passenger count bar chart based on user-selected filters.
 
         Parameters
         ----------
         start_date : str
-            The start date selected in the date picker
+            The start date selected in the date picker.
         end_date : str
-            The end date selected in the date picker
+            The end date selected in the date picker.
         control_points : list 
-            List of selected control points
+            List of selected control points.
 
         Returns
         -------
-        plotly.graph_objects.Figure
-            A Plotly figure showing the net passenger inflow over time
+        dict
+            alt.Chart object as a dict
 
         """
-        try:
-            schema = passenger_count(df, start_date, end_date, control_points)
-        except Exception:
-            schema = passenger_count(df, start_date, end_date, control_points)
+        schema = passenger_count(df, start_date, end_date, control_points)
 
         return schema
 
@@ -164,6 +161,7 @@ def register_callbacks(app):
             dl.CircleMarker(
                 center=(row["Latitude"], row["Longitude"]),
                 radius=max(5, min(row["passenger_count"] / 1000, 15)),  
+                color="blue" if row["passenger_count"] < 50000 else "red",
                 fill=True,
                 fillOpacity=0.6,
                 children=dl.Popup(f"{row['control_point']}: {int(row['passenger_count']):,} passengers")
@@ -269,11 +267,20 @@ def register_callbacks(app):
             color_discrete_map={"Arrival": "#ADD8E6", "Departure": "#00008B"},  # Changed to light&dark blue
         )
 
+
         fig.update_layout(
-            showlegend=False,
-            plot_bgcolor="white",  # Removes grey background
-            paper_bgcolor="white"  # Ensures no grey on the outer area
+            legend_title="Travel Type",  # Set a title for the legend
+            legend=dict(
+                x=1,  # Position legend to the right
+                y=1,
+                bgcolor="white",  # White background for visibility
+                bordercolor="black",
+                borderwidth=1
+            ),
+             plot_bgcolor="white",  # Removes grey background
+             paper_bgcolor="white"  # Ensures no grey on the outer area
         )
+
 
 
         return fig
