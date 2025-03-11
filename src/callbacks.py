@@ -1,4 +1,5 @@
 import pandas as pd
+import functools
 from dash import Input, Output # type: ignore
 import plotly.express as px  # type: ignore
 import dash_leaflet as dl  # type: ignore
