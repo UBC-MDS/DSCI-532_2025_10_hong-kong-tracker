@@ -4,6 +4,7 @@ import dash_vega_components as dvc  # type: ignore
 import pandas as pd
 from src.callbacks import register_callbacks  # Import the callback registration function
 from datetime import timedelta
+import dash_loading_spinners as dls
 
 # Load data to get control point values
 DATA_PATH = "data/processed/data.csv"
@@ -121,30 +122,36 @@ map_section = html.Div(
 )
 
 # --- Graphs Section ---
-graphs_section = dbc.Container([
-    dbc.Row([
-        # First column for the map
-        dbc.Col(
-            map_section, 
-            width=6, 
-            style={"height": "350px"}
-        ),
+graphs_section = dls.Hash(
+    dbc.Container([
+        dbc.Row([
+            # First column for the map
+            dbc.Col(
+                map_section, 
+                width=6, 
+                style={"height": "350px"}
+            ),
 
-        # Second column for the three graphs
-        dbc.Col([
-            dcc.Graph(id="passenger_origin", style={"flex": "1"}),
-            dcc.Graph(id="travel_method", style={"flex": "1"}),
-        ], width=6, style={
-            "height": "500px",
-            "display": "flex",
-            "flexDirection": "column",
-            "gap": "15px",
-        })  
-    ])
-], style={"margin-bottom": "30px"})
+            # Second column for the three graphs
+            dbc.Col([
+                dcc.Graph(id="passenger_origin", style={"flex": "1"}),
+                dcc.Graph(id="travel_method", style={"flex": "1"}),
+            ], width=6, style={
+                "height": "500px",
+                "display": "flex",
+                "flexDirection": "column",
+                "gap": "15px",
+            })  
+        ])
+    ], style={"margin-bottom": "30px"}),
+    color="#191970",
+    speed_multiplier=2,
+    size=150
+)
 
 # --- Separate Graph Section ---
-separate_graph = dbc.Container(
+separate_graph = dls.Hash(
+    dbc.Container(
     [
         dbc.Row(
             [
@@ -154,6 +161,10 @@ separate_graph = dbc.Container(
         ),
     ],
     style={ "paddingTop": "20px"}
+    ),
+    color="#191970",
+    speed_multiplier=2,
+    size=150
 )
 
 # --- Footer Section ---
@@ -204,3 +215,4 @@ layout = html.Div(
         "color": "#00008B",
     },
 )
+
