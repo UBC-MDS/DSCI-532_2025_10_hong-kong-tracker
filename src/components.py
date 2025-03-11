@@ -144,14 +144,14 @@ graphs_section = dls.Hash(
             })  
         ])
     ], style={"margin-bottom": "30px"}),
-    color="#435278",
+    color="#191970",
     speed_multiplier=2,
-    size=300,
-    fullscreen=True
+    size=150
 )
 
 # --- Separate Graph Section ---
-separate_graph = dbc.Container(
+separate_graph = dls.Hash(
+    dbc.Container(
     [
         dbc.Row(
             [
@@ -161,6 +161,10 @@ separate_graph = dbc.Container(
         ),
     ],
     style={ "paddingTop": "20px"}
+    ),
+    color="#191970",
+    speed_multiplier=2,
+    size=150
 )
 
 # --- Footer Section ---
