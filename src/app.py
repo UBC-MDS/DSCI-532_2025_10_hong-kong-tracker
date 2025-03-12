@@ -1,8 +1,8 @@
 from dash import Dash  # type: ignore
 import dash_bootstrap_components as dbc  # type: ignore
 import dash_vega_components as dvc # type: ignore
-from callbacks import register_callbacks  # Import the callback registration function
-from components import layout
+from src.callbacks import register_callbacks  # Import the callback registration function
+from src.components import layout
 
 # Initialize the Dash app with Bootstrap for styling
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
