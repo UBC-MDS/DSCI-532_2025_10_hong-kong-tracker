@@ -8,6 +8,9 @@ from src.components import layout
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server  # for deployment
 
+# Set tab title
+app.title = "Hong Kong Passenger Traffic Tracker"
+
 # Layout setup
 app.layout = layout
 
