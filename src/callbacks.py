@@ -1,6 +1,6 @@
 import pandas as pd
 from flask_caching import Cache
-from dash import Input, Output, dcc, html # type: ignore
+from dash import Input, Output, dcc, html, ctx # type: ignore
 import plotly.express as px  # type: ignore
 import dash_leaflet as dl  # type: ignore
 import dash_leaflet.express as dlx  # type: ignore
@@ -294,3 +294,22 @@ def register_callbacks(app):
 
 
         return fig
+    @app.callback(
+    Output("passenger_modal", "is_open"),  # Output to toggle modal visibility
+    [Input("total_passengers", "children"),  # Monitor passenger count
+        Input("close_modal", "n_clicks")],  # Close button clicks
+    prevent_initial_call=True
+    )
+    def toggle_modal(total_passengers, close_clicks):
+        """
+        Opens the modal when total_passengers is 0, closes it when close button is clicked.
+        """
+        if ctx.triggered_id == "close_modal":
+            return False  # Close modal when button is clicked
+        
+        try:
+            passenger_count = int(total_passengers.replace(",", ""))  # Remove commas and convert to int
+        except ValueError:
+            passenger_count = 0
+
+        return passenger_count == 0  # Open modal if passenger count is 0
