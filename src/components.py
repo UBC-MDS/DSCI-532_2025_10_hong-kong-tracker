@@ -25,6 +25,29 @@ DEFAULT_DATE_RANGE = {
     "end_date": last_date,
 }
 
+# --- Modal ---
+passenger_modal = dbc.Modal(
+    [
+        dbc.ModalHeader("Note"),
+        dbc.ModalBody([
+            "There was no passenger using these control points during the selected period. ",
+            html.Br(),
+            "Please choose a different control point or time period. ",
+            html.Br(),
+            "For updates on control point closures, "
+            "please check the website of ",
+            html.A("the Hong Kong Immigation Department", href="https://www.immd.gov.hk/eng/", target="_blank", style={"color": "blue"}),
+            '.'
+        ]),
+        dbc.ModalFooter(
+            dbc.Button("Close", id="close_modal", className="ml-auto", n_clicks=0)
+        ),
+    ],
+    id="passenger_modal",
+    is_open=False,  # Initially hidden
+)
+
+
 # --- Sidebar ---
 sidebar = html.Div(
     [
@@ -209,7 +232,7 @@ content = html.Div(
 
 # Layout setup
 layout = html.Div(
-    [sidebar, content],
+    [sidebar, content, passenger_modal],
     style={
         "fontFamily": "Arial, sans-serif",
         "color": "#00008B",
