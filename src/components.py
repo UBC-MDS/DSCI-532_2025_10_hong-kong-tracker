@@ -36,7 +36,7 @@ passenger_modal = dbc.Modal(
             html.Br(),
             "For updates on control point closures, "
             "please check the website of ",
-            html.A("the Hong Kong Immigation Department", href="https://www.immd.gov.hk/eng/", target="_blank", style={"color": "blue"}),
+            html.A("the Hong Kong Immigration Department", href="https://www.immd.gov.hk/eng/", target="_blank", style={"color": "blue"}),
             '.'
         ]),
         dbc.ModalFooter(
