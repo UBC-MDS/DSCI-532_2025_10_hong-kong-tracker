@@ -52,7 +52,7 @@ def register_callbacks(app):
             Input("arrival_departure", "value"),
         ]
     )
-    @functools.lru_cache()
+    @functools.lru_cache
     def update_total_counts(start_date, end_date, control_points, travel_types):
         """
         Updates the total passenger count and volume entries based on user-selected filters.
@@ -124,7 +124,7 @@ def register_callbacks(app):
             Input("arrival_departure", "value")
         ]
     )
-    @functools.lru_cache()
+    @functools.lru_cache
     def update_map(start_date, end_date, control_points, travel_types):
         """
         Updates the map visualization based on user-selected filters.
@@ -186,7 +186,7 @@ def register_callbacks(app):
         Input("arrival_departure", "value"),
     ]
     )
-    @functools.lru_cache()
+    @functools.lru_cache
     def update_travel_method(start_date, end_date, control_point, arrival_departure):
         return travel_method(start_date, end_date, control_point, arrival_departure)
     
@@ -199,7 +199,7 @@ def register_callbacks(app):
         Input("arrival_departure", "value"),
     ]
     )
-    @functools.lru_cache()
+    @functools.lru_cache
     def update_passenger_origin(start_date, end_date, control_point, travel_types):
         return passenger_origin(start_date, end_date, control_point, travel_types)
     
@@ -212,7 +212,7 @@ def register_callbacks(app):
         Input("arrival_departure", "value"),
     ],
 )
-    @functools.lru_cache()
+    @functools.lru_cache
     def update_net_passenger_flow(start_date, end_date, control_point, travel_types):
         """
         Generates an area chart visualizing the net passenger flow over time, categorized by travel type
