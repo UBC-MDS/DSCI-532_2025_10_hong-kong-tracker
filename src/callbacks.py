@@ -1,5 +1,6 @@
 import pandas as pd
-from dash import Input, Output, dcc, html  # type: ignore
+from flask_caching import Cache
+from dash import Input, Output, dcc, html # type: ignore
 import plotly.express as px  # type: ignore
 import dash_leaflet as dl  # type: ignore
 import dash_leaflet.express as dlx  # type: ignore
@@ -41,6 +42,16 @@ def register_callbacks(app):
         app (dash.Dash): The Dash application instance.
     """
 
+    # Create cache
+    cache = Cache(
+        app.server,
+        config={
+            'CACHE_TYPE': 'filesystem',
+            'CACHE_DIR': 'tmp'
+        }
+    )
+    TIMEOUT = 30
+
     @app.callback(
         [Output("total_passengers", "children"),
          Output("volume_entries", "children")],
@@ -51,6 +62,7 @@ def register_callbacks(app):
             Input("arrival_departure", "value"),
         ]
     )
+    @cache.memoize(timeout=TIMEOUT)
     def update_total_counts(start_date, end_date, control_points, travel_types):
         """
         Updates the total passenger count and volume entries based on user-selected filters.
@@ -80,7 +92,7 @@ def register_callbacks(app):
         return compute_totals(filtered_df)
 
     @app.callback(
-        Output("passenger_count", "spec"),
+        Output("passenger_count", "figure"),
         [
             Input("date_picker", "start_date"),
             Input("date_picker", "end_date"),
@@ -89,24 +101,27 @@ def register_callbacks(app):
     )
     def update_passenger_count(start_date, end_date, control_points):
         """
-        Updates the passenger count bar chart based on user-selected filters.
+        Updates the net passenger count bar chart based on user-selected filters.
 
         Parameters
         ----------
         start_date : str
-            The start date selected in the date picker.
+            The start date selected in the date picker
         end_date : str
-            The end date selected in the date picker.
+            The end date selected in the date picker
         control_points : list 
-            List of selected control points.
+            List of selected control points
 
         Returns
         -------
-        dict
-            alt.Chart object as a dict
+        plotly.graph_objects.Figure
+            A Plotly figure showing the net passenger inflow over time
 
         """
-        schema = passenger_count(df, start_date, end_date, control_points)
+        try:
+            schema = passenger_count(df, start_date, end_date, control_points)
+        except Exception:
+            schema = passenger_count(df, start_date, end_date, control_points)
 
         return schema
 
@@ -119,6 +134,7 @@ def register_callbacks(app):
             Input("arrival_departure", "value")
         ]
     )
+    @cache.memoize(timeout=TIMEOUT)
     def update_map(start_date, end_date, control_points, travel_types):
         """
         Updates the map visualization based on user-selected filters.
@@ -157,8 +173,7 @@ def register_callbacks(app):
         markers = [
             dl.CircleMarker(
                 center=(row["Latitude"], row["Longitude"]),
-                radius=max(5, min(row["passenger_count"] / 1000, 15)),  
-                color="blue" if row["passenger_count"] < 50000 else "red",
+                radius=max(5, min(row["passenger_count"] / 1000, 15)),
                 fill=True,
                 fillOpacity=0.6,
                 children=dl.Popup(f"{row['control_point']}: {int(row['passenger_count']):,} passengers")
@@ -181,6 +196,7 @@ def register_callbacks(app):
         Input("arrival_departure", "value"),
     ]
     )
+    @cache.memoize(timeout=TIMEOUT)
     def update_travel_method(start_date, end_date, control_point, arrival_departure):
         return travel_method(start_date, end_date, control_point, arrival_departure)
     
@@ -193,6 +209,7 @@ def register_callbacks(app):
         Input("arrival_departure", "value"),
     ]
     )
+    @cache.memoize(timeout=TIMEOUT)
     def update_passenger_origin(start_date, end_date, control_point, travel_types):
         return passenger_origin(start_date, end_date, control_point, travel_types)
     
@@ -205,6 +222,7 @@ def register_callbacks(app):
         Input("arrival_departure", "value"),
     ],
 )
+    @cache.memoize(timeout=TIMEOUT)
     def update_net_passenger_flow(start_date, end_date, control_point, travel_types):
         """
         Generates an area chart visualizing the net passenger flow over time, categorized by travel type
@@ -261,7 +279,6 @@ def register_callbacks(app):
             color_discrete_map={"Arrival": "#ADD8E6", "Departure": "#00008B"},  # Changed to light&dark blue
         )
 
-
         fig.update_layout(
             legend_title="Travel Type",  # Set a title for the legend
             legend=dict(
@@ -271,10 +288,9 @@ def register_callbacks(app):
                 bordercolor="black",
                 borderwidth=1
             ),
-             plot_bgcolor="white",  # Removes grey background
-             paper_bgcolor="white"  # Ensures no grey on the outer area
+            plot_bgcolor="white",  # Removes grey background
+            paper_bgcolor="white"  # Ensures no grey on the outer area
         )
-
 
 
         return fig
