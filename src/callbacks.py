@@ -177,7 +177,7 @@ def register_callbacks(app):
                 radius=max(5, min(row["passenger_count"] / 1000, 15)),
                 fill=True,
                 fillOpacity=0.6,
-                children=dl.Popup(f"{row['control_point']}: {int(row['passenger_count']):,} passengers")
+                children=dl.Tooltip(f"{row['control_point']}: {int(row['passenger_count']):,} passengers")
             )
             for _, row in control_points_df.iterrows()
         ]
