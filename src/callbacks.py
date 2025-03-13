@@ -4,9 +4,9 @@ from dash import Input, Output, dcc, html, ctx # type: ignore
 import plotly.express as px  # type: ignore
 import dash_leaflet as dl  # type: ignore
 import dash_leaflet.express as dlx  # type: ignore
-from travel_method import travel_method
-from passenger_origin import passenger_origin
-from passenger_count import passenger_count
+from src.travel_method import travel_method
+from src.passenger_origin import passenger_origin
+from src.passenger_count import passenger_count
 
 # Load data
 DATA_PATH = "data/processed/data.csv"
