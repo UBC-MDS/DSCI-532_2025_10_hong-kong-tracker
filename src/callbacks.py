@@ -4,9 +4,9 @@ from dash import Input, Output, dcc, html, ctx # type: ignore
 import plotly.express as px  # type: ignore
 import dash_leaflet as dl  # type: ignore
 import dash_leaflet.express as dlx  # type: ignore
-from src.travel_method import travel_method
-from src.passenger_origin import passenger_origin
-from src.passenger_count import passenger_count
+from travel_method import travel_method
+from passenger_origin import passenger_origin
+from passenger_count import passenger_count
 
 # Load data
 DATA_PATH = "data/processed/data.csv"
@@ -137,7 +137,8 @@ def register_callbacks(app):
     @cache.memoize(timeout=TIMEOUT)
     def update_map(start_date, end_date, control_points, travel_types):
         """
-        Updates the map visualization based on user-selected filters.
+        Updates the map visualization based on user-selected filters, automatically adjusting
+        the view so that all points are visible.
 
         Parameters:
             start_date (str): The start date selected in the date picker.
@@ -162,7 +163,7 @@ def register_callbacks(app):
         if filtered_df.empty:
             return dl.Map(
                 [dl.TileLayer()],
-                center=[22.3193, 114.1694],  # Centering on Hong Kong
+                center=[22.3193, 114.1694],
                 zoom=11,
                 style={"height": "500px", "width": "100%"}
             )
@@ -181,12 +182,21 @@ def register_callbacks(app):
             for _, row in control_points_df.iterrows()
         ]
 
+        # Compute bounds to fit all markers
+        latitudes = control_points_df["Latitude"].values
+        longitudes = control_points_df["Longitude"].values
+
+        bounds = [
+            [latitudes.min(), longitudes.min()],
+            [latitudes.max(), longitudes.max()]
+        ]
+
         return dl.Map(
             [dl.TileLayer()] + markers,
-            center=[22.3193, 114.1694],  # Centering on Hong Kong
-            zoom=11,
+            bounds=bounds,
             style={"height": "500px", "width": "100%"}
         )
+
     @app.callback(
     Output("travel_method", "figure"),
     [
