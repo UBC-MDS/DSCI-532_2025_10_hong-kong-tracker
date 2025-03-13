@@ -17,22 +17,22 @@ df["date"] = pd.to_datetime(df["date"], format="%d-%m-%Y", errors="coerce")  # A
 
 def compute_totals(filtered_df):
     """
-    Computes total passenger counts and volume entries based on the filtered dataset.
+    Computes total passenger counts and volume entries per 100,000 people based on the filtered dataset.
 
     Parameters:
         filtered_df (pd.DataFrame): Filtered DataFrame based on user selections.
 
     Returns:
-        tuple: Total passenger count as a formatted string and volume entries rounded to 8 decimal places.
+        tuple: Total passenger count as a formatted string and volume entries per 100,000 rounded to 2 decimal places.
     """
     if filtered_df.empty:
         return "0", "0"
 
     total_passengers = filtered_df["passenger_count"].sum()
     tourist_df = filtered_df[(filtered_df['travel_type'] == 'Arrival') & (filtered_df['passenger_origin'] != 'Hong Kong Residents')]
-    volume_entries = round(len(tourist_df) / 7.54e6, 8)
+    volume_entries = round(len(tourist_df) / 7.54e6 * 100000, 2)
 
-    return f"{total_passengers:,}", f"{volume_entries:.8f}"
+    return f"{total_passengers:,}", f"{volume_entries:.2f}"
 
 def register_callbacks(app):
     """

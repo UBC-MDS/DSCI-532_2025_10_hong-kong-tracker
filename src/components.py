@@ -2,9 +2,9 @@ from dash import Dash, html, dcc  # type: ignore
 import dash_bootstrap_components as dbc  # type: ignore
 import dash_vega_components as dvc  # type: ignore
 import pandas as pd
-from src.callbacks import register_callbacks  # Import the callback registration function
+from callbacks import register_callbacks  # Import the callback registration function
 from datetime import timedelta
-import dash_loading_spinners as dls
+import dash_loading_spinners as dls # type: ignore
 
 # Load data to get control point values
 DATA_PATH = "data/processed/data.csv"
@@ -69,6 +69,8 @@ sidebar = html.Div(
                         dbc.CardBody([
                             html.P("Volume of Entries", className="text-center", style={"color": "#00008B", "fontSize": "18px"}),
                             html.H5(id="volume_entries", className="text-center", style={"color": "#00008B", "fontSize": "22px"}),
+                            html.P("(Entries calculated per 100,000 people)", className="text-center text-muted", style={"fontSize": "12px"}),
+
                         ])
                     ),
                     width=12,
