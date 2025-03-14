@@ -17,22 +17,22 @@ df["date"] = pd.to_datetime(df["date"], format="%d-%m-%Y", errors="coerce")  # A
 
 def compute_totals(filtered_df):
     """
-    Computes total passenger counts and volume entries based on the filtered dataset.
+    Computes total passenger counts and volume entries per 100,000 people based on the filtered dataset.
 
     Parameters:
         filtered_df (pd.DataFrame): Filtered DataFrame based on user selections.
 
     Returns:
-        tuple: Total passenger count as a formatted string and volume entries rounded to 8 decimal places.
+        tuple: Total passenger count as a formatted string and volume entries per 100,000 rounded to 2 decimal places.
     """
     if filtered_df.empty:
         return "0", "0"
 
     total_passengers = filtered_df["passenger_count"].sum()
     tourist_df = filtered_df[(filtered_df['travel_type'] == 'Arrival') & (filtered_df['passenger_origin'] != 'Hong Kong Residents')]
-    volume_entries = round(len(tourist_df) / 7.54e6, 8)
+    volume_entries = round(len(tourist_df) / 7.54e6 * 100000, 2)
 
-    return f"{total_passengers:,}", f"{volume_entries:.8f}"
+    return f"{total_passengers:,}", f"{volume_entries:.2f}"
 
 def register_callbacks(app):
     """
@@ -137,7 +137,8 @@ def register_callbacks(app):
     @cache.memoize(timeout=TIMEOUT)
     def update_map(start_date, end_date, control_points, travel_types):
         """
-        Updates the map visualization based on user-selected filters.
+        Updates the map visualization based on user-selected filters, automatically adjusting
+        the view so that all points are visible.
 
         Parameters:
             start_date (str): The start date selected in the date picker.
@@ -162,7 +163,7 @@ def register_callbacks(app):
         if filtered_df.empty:
             return dl.Map(
                 [dl.TileLayer()],
-                center=[22.3193, 114.1694],  # Centering on Hong Kong
+                center=[22.3193, 114.1694],
                 zoom=11,
                 style={"height": "500px", "width": "100%"}
             )
@@ -176,17 +177,26 @@ def register_callbacks(app):
                 radius=max(5, min(row["passenger_count"] / 1000, 15)),
                 fill=True,
                 fillOpacity=0.6,
-                children=dl.Popup(f"{row['control_point']}: {int(row['passenger_count']):,} passengers")
+                children=dl.Tooltip(f"{row['control_point']}: {int(row['passenger_count']):,} passengers")
             )
             for _, row in control_points_df.iterrows()
         ]
 
+        # Compute bounds to fit all markers
+        latitudes = control_points_df["Latitude"].values
+        longitudes = control_points_df["Longitude"].values
+
+        bounds = [
+            [latitudes.min(), longitudes.min()],
+            [latitudes.max(), longitudes.max()]
+        ]
+
         return dl.Map(
             [dl.TileLayer()] + markers,
-            center=[22.3193, 114.1694],  # Centering on Hong Kong
-            zoom=11,
+            bounds=bounds,
             style={"height": "500px", "width": "100%"}
         )
+
     @app.callback(
     Output("travel_method", "figure"),
     [

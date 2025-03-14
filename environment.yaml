@@ -26,3 +26,4 @@ dependencies:
         - dash-vega-components
         - Flask-Caching==2.1.0
         - dash-leaflet
+        - dash-loading-spinners==1.0.0
