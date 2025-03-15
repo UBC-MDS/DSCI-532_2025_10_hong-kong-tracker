@@ -2,7 +2,7 @@ from dash import Dash, html, dcc  # type: ignore
 import dash_bootstrap_components as dbc  # type: ignore
 import dash_vega_components as dvc  # type: ignore
 import pandas as pd
-from src.callbacks import register_callbacks  # Import the callback registration function
+from callbacks import register_callbacks  # Import the callback registration function
 from datetime import timedelta
 import dash_loading_spinners as dls # type: ignore
 
@@ -207,7 +207,7 @@ footer = dbc.Container(
                     html.Br(),
                     html.A("GitHub Repository", href="https://github.com/UBC-MDS/DSCI-532_2025_10_hong-kong-tracker", target="_blank", style={"color": "#00008B"}),
                     html.Br(),
-                    "Last Updated: 2025-MARCH-09",
+                    "Last Updated: 2025-MARCH-16",
                 ],
                 className="text-center",
                 style={"color": "#00008B", "fontSize": "14px"},
