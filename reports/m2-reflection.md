@@ -7,9 +7,9 @@ We have incorporated **interactive filtering mechanisms**, enabling users to ref
 
 Additionally, we have integrated key statistical indicators, including **Total Passengers** and the **Passenger-to-Population Ratio**, defined as:  
 
-\[
+$$
 \frac{\text{Net Visitors (Mainland + Other Visitors)}}{\text{Total City Population}}
-\]
+$$
 
 Other computed metrics include:  
 
