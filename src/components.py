@@ -207,7 +207,7 @@ footer = dbc.Container(
                     html.Br(),
                     html.A("GitHub Repository", href="https://github.com/UBC-MDS/DSCI-532_2025_10_hong-kong-tracker", target="_blank", style={"color": "#00008B"}),
                     html.Br(),
-                    "Last Updated: 2025-MARCH-09",
+                    "Last Updated: 2025-MARCH-16",
                 ],
                 className="text-center",
                 style={"color": "#00008B", "fontSize": "14px"},
