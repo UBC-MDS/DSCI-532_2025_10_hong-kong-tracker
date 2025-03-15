@@ -2,7 +2,7 @@ from dash import Dash, html, dcc  # type: ignore
 import dash_bootstrap_components as dbc  # type: ignore
 import dash_vega_components as dvc  # type: ignore
 import pandas as pd
-from callbacks import register_callbacks  # Import the callback registration function
+from src.callbacks import register_callbacks  # Import the callback registration function
 from datetime import timedelta
 import dash_loading_spinners as dls # type: ignore
 
