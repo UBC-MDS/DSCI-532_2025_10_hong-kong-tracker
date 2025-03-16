@@ -22,7 +22,7 @@ Simply adjust these filters to uncover insights and trends in Hong Kong's passen
 
 ### 🌍 Dashboard
 
-Click [here](https://five32-group-10.onrender.com/) to check out the live dashboard!
+Click [here](https://hong-kong-traffic-tracker.onrender.com) to check out the live dashboard!
 
 ### 🎬 Demo
 
